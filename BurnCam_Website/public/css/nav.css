@@ -1,0 +1,66 @@
+/*================================
+============ NAVBAR ==============
+================================*/
+
+.navbar-default{
+  padding-top: 2vh;
+  padding-bottom: 2vh;
+  background-color: var(--mainWhite);
+  font-size:1.5vw;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.navbar-default .navbar-nav > li > a {
+    padding-left:1.5vw;
+    padding-right:1.5vw;
+    color: var(--mainDark);
+}
+
+nav{
+   -webkit-transition: all 0.4s ease;
+   transition: all 0.4s ease;
+}
+.navBrand{
+  transform: translate(0,-20px);
+  vertical-align: bottom;
+  padding:0px;
+  margin:auto;
+  width: 6vh;
+  max-width: 250px;
+}
+
+.shrink {
+  font-size: 1vw;
+  padding: 0vw;
+}
+
+
+.navButton {
+    margin: .25vh .5vw;
+    padding: 1vh 1vw;
+
+    color: var(--mainDark);
+    background-color: var(--mainWhite);
+    border-style: solid;
+    border-radius: 12px;
+    border-width: 2px;
+    border-color: var(--mainLight);
+}
+
+.navButton:hover{
+    background-color: var(--mainLight);
+}
+
+@media only screen and (max-width: 800px) {
+    .navbar-default{
+      font-size: 4vw;
+    }
+    .shrink{
+        font-size: 4vw;
+    }
+}
+
+.small{
+  max-width: 100px;
+  transform: translate(0,-15px);
+}

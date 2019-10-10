@@ -1,0 +1,725 @@
+Number.prototype.format = function(n, x) {
+    var re = '\\d(?=(\\d{' + (x || 3) + '})+' + (n > 0 ? '\\.' : '$') + ')';
+    return this.toFixed(Math.max(0, ~~n)).replace(new RegExp(re, 'g'), '$&,');
+};
+Number.prototype.getDecimals = function () {
+    return Number(String(this).substr(String(this).indexOf('.')+1));
+};
+
+/**
+ * Expanding graphs into modals
+ */
+var openChartModal = {
+    chart: null,
+    icon: null
+};
+function toggleChartModal(chart,icon) {
+    icon.toggleClass(function() {
+        if ( $( this ).hasClass('fa-expand') ) {
+            return 'fa-compress';
+        } else {
+            return 'fa-expand';
+        }
+    });
+    $('.chartmodalmask').toggle();
+    $(chart).parent().toggleClass('chartmodal');
+    $(chart).highcharts().reflow();
+}
+$('.expandGraphIcon').bind('mousedown', function () {
+    that = $(this);
+    openChartModal.icon = that.find('i');
+    openChartModal.chart = that.next();
+    toggleChartModal(openChartModal.chart,openChartModal.icon);
+});
+$('.chartmodalmask').bind('mousedown', function () {
+    toggleChartModal(openChartModal.chart,openChartModal.icon)
+});
+
+/**
+ * Graph javascript
+ */
+function getGraphStats(points){
+    // sometimes the first point in the Highcharts array is not shown on graph, use the "isInside" flag to determine if the point is shown
+    var beginIndex = 0;
+    if (!points["0"].isInside){
+        beginIndex = 1;
+    }
+    var stats = {
+        color: 'green',
+        icon: 'up',
+        symbol: '+',
+        begin: points[beginIndex].y,
+        begin_formatted: points[beginIndex].y.format(0),
+        end: points[points.length - 1].y,
+        end_formatted: points[points.length - 1].y.format(0)
+    };
+    stats.change = stats.end - stats.begin;
+    stats.change_formatted = Math.abs(stats.change).format(0);
+    if (+stats.end - +stats.begin < 0){
+        stats.color = 'red';
+        stats.icon = 'down';
+        stats.symbol = '-';
+    }
+    stats.percent = (((stats.end/stats.begin)*100)-100);
+    stats.percent_markup = '<span class="text-' + stats.color + '">'
+        + '<i class="fa fa-arrow-' + stats.icon + '"></i>'
+        + Math.abs(stats.percent).format(1)
+        + '%</span>';
+
+    return stats;
+}
+
+function getPerPatronGraphStats(patronStats,earningsStats){
+    var stats = {
+        color: 'green',
+        icon: 'up',
+        symbol: '+'
+    };
+    stats.begin = (+earningsStats.begin/+patronStats.begin);
+    stats.begin_formatted = stats.begin.format(2);
+    stats.end = (+earningsStats.end/+patronStats.end);
+    stats.end_formatted = stats.end.format(2);
+
+    stats.change = stats.end - stats.begin;
+    stats.change_formatted = Math.abs(stats.change).format(0);
+    if (+stats.end - +stats.begin < 0){
+        stats.color = 'red';
+        stats.icon = 'down';
+        stats.symbol = '-';
+    }
+    stats.percent = (((stats.end/stats.begin)*100)-100);
+    stats.percent_markup = '<span class="text-' + stats.color + '">'
+        + '<i class="fa fa-arrow-' + stats.icon + '"></i>'
+        + Math.abs(stats.percent).format(1)
+        + '%</span>';
+
+    return stats;
+}
+
+function renderGraphStat(el,stat){
+    $(el).html(stat);
+}
+
+Highcharts.setOptions({
+    lang: {
+        decimalPoint: '.',
+        thousandsSep: ','
+    },
+    credits: {
+        text: 'Graphtreon.com',
+        href: ''
+    },
+    "colors": ["#0266C8", "#F90101", "#F2B50F", "#00933B"],
+    "chart": {
+        "style": {
+            "fontFamily": "Arial, sans-serif",
+            "color": "#444444"
+        }
+    },
+    "plotOptions": {
+        "series": {
+            "lineWidth": 2
+        }
+    },
+    "xAxis": {
+        "gridLineWidth": 0,
+        "gridLineColor": "#F3F3F3",
+        "lineColor": "#F3F3F3",
+        "minorGridLineColor": "#F3F3F3",
+        "tickColor": "#F3F3F3",
+        "tickWidth": 1
+    },
+    "yAxis": {
+        "gridLineColor": "#F3F3F3",
+        "lineColor": "#F3F3F3",
+        "minorGridLineColor": "#F3F3F3",
+        "tickColor": "#F3F3F3",
+        "tickWidth": 1
+    },
+    "legendBackgroundColor": "rgba(0, 0, 0, 0.5)",
+    "background2": "#505053",
+    "dataLabelsColor": "#B0B0B3",
+    "textColor": "#C0C0C0",
+    "contrastTextColor": "#F0F0F3",
+    "maskColor": "rgba(255,255,255,0.3)"
+});
+
+function renderMonthlyGraphStats(graphObj){
+    if (graphObj.series["0"].points.length > 0) {
+        var patronGraphStats = getGraphStats(graphObj.series["0"].points);
+        renderGraphStat('#monthlygraph-patronstats .graphstats-stat', patronGraphStats.end_formatted);
+        renderGraphStat('#monthlygraph-patronstats .graphstats-substat', patronGraphStats.percent_markup);
+    }
+
+    if (graphObj.series["1"].points.length > 0) {
+        var earningsGraphStats = getGraphStats(graphObj.series["1"].points);
+        renderGraphStat('#monthlygraph-earningsstats .graphstats-stat', '$' + earningsGraphStats.end_formatted);
+        renderGraphStat('#monthlygraph-earningsstats .graphstats-substat', earningsGraphStats.percent_markup);
+
+        var perPatronGraphStats = getPerPatronGraphStats(patronGraphStats, earningsGraphStats);
+        renderGraphStat('#monthlygraph-perpatronstats .graphstats-stat', '$' + perPatronGraphStats.end_formatted);
+        renderGraphStat('#monthlygraph-perpatronstats .graphstats-substat', perPatronGraphStats.percent_markup);
+    }
+}
+
+$('#monthlygraph').highcharts('StockChart', {
+    chart: {
+        type: 'column'
+    },
+    title: {
+        text: creatorName
+    },
+    subtitle: {
+        text: 'Patreon Monthly'
+    },
+    rangeSelector: {
+        selected: 1,
+        verticalAlign: 'top',
+        buttons: [{
+            type: 'month',
+            count: 6,
+            text: '6m'
+        }, {
+            type: 'year',
+            count: 1,
+            text: '1y'
+        }, {
+            type: 'year',
+            count: 2,
+            text: '2y'
+        }, {
+            type: 'year',
+            count: 3,
+            text: '3y'
+        }, {
+            type: 'all',
+            text: 'All'
+        }],
+        inputEnabled: false,
+        inputDateFormat: '%m/%d/%Y',
+        inputEditDateFormat: '%m/%d/%Y',
+        // Custom parser to parse the '%m/%d/%Y' format
+        inputDateParser: function (value) {
+            value = value.split('/');
+            return Date.UTC(
+                parseInt(value[2]),
+                parseInt(value[0])-1,
+                parseInt(value[1])
+            );
+        }
+    },
+    navigator: {
+        enabled: false
+    },
+    scrollbar: {
+        enabled: false
+    },
+    xAxis: {
+        type: 'datetime',
+        ordinal: false,
+        events: {
+            afterSetExtremes: function () {
+                renderMonthlyGraphStats(this);
+            }
+        }
+    },
+    yAxis: [{
+        title: {
+            text: 'Patrons'
+        },
+        opposite: false
+    }, {
+        title: {
+            text: 'Earnings per '+creatorRange
+        }
+    }],
+    tooltip: {
+        shared: true,
+        backgroundColor: '#FFF',
+        borderColor: 'black',
+        borderRadius: 10,
+        borderWidth: 1,
+        formatter: function() {
+            var aDate = new Date(this.points[0].key);
+            var thatDate = new Date (aDate.getTime() + aDate.getTimezoneOffset() * 60 * 1000);
+            var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+
+            var graphTooltip = months[thatDate.getMonth()] + ' ' + thatDate.getFullYear() + '<br />' +
+                '<span style="color:'+this.points[0].point.color+';">●</span> ' +
+                'Patrons: <strong>' + this.points[0].y.format(0) + '</strong><br />';
+
+            if (this.points[1] != null) {
+                graphTooltip += '<span style="color:'+this.points[1].point.color+';">●</span> ' +
+                    'Earnings per '+creatorRange+': <strong>$' + this.points[1].y.format(0) + '</strong><br />' +
+                    '<span style="color:#00c0ef;">●</span> ' +
+                    'Per patron: <strong>$' + (this.points[1].y/this.points[0].y).format(2) + '</strong>';
+            }
+            return  graphTooltip;
+        }
+    },
+    series: [{
+        name: 'Patrons',
+        color: '#f39c12',
+        data: monthlyGraph_patronSeriesData
+    }, {
+        name: 'Earnings per '+creatorRange,
+        color: '#00a65a',
+        data: monthlyGraph_earningsSeriesData,
+        yAxis: 1
+    }]
+}, function(chart){
+    // apply the date pickers
+    setTimeout(function() {
+        $('input.highcharts-range-selector', $(chart.container).parent()).datepicker({
+            format: 'mm/dd/yyyy',
+            todayBtn: "linked",
+            orientation: "auto",
+            autoclose: true,
+            todayHighlight: true,
+            startDate: startDate,
+            endDate: '-1d'
+        })
+        .on('show', function(e){
+            this.blur();
+        });
+
+    }, 0);
+    renderMonthlyGraphStats(chart);
+});
+
+function renderDailyGraphStats(graphObj){
+    var patronGraphStats = getGraphStats(graphObj.series["0"].points);
+    renderGraphStat('#dailygraph-patronstats .graphstats-stat',patronGraphStats.end_formatted);
+    renderGraphStat('#dailygraph-patronstats .graphstats-substat',patronGraphStats.percent_markup);
+
+    if (graphObj.series["1"].points.length > 0) {
+        var earningsGraphStats = getGraphStats(graphObj.series["1"].points);
+        renderGraphStat('#dailygraph-earningsstats .graphstats-stat', '$' + earningsGraphStats.end_formatted);
+        renderGraphStat('#dailygraph-earningsstats .graphstats-substat', earningsGraphStats.percent_markup);
+
+        var perPatronGraphStats = getPerPatronGraphStats(patronGraphStats, earningsGraphStats);
+        renderGraphStat('#dailygraph-perpatronstats .graphstats-stat', '$' + perPatronGraphStats.end_formatted);
+        renderGraphStat('#dailygraph-perpatronstats .graphstats-substat', perPatronGraphStats.percent_markup);
+    }
+}
+
+$('#dailygraph').highcharts('StockChart', {
+    chart: {
+        type: 'line'
+    },
+    title: {
+        text: creatorName
+    },
+    subtitle: {
+        text: 'Patreon Daily'
+    },
+    rangeSelector: {
+        selected: 0,
+        inputEnabled: false,
+        inputDateFormat: '%m/%d/%Y',
+        inputEditDateFormat: '%m/%d/%Y',
+        // Custom parser to parse the '%m/%d/%Y' format
+        inputDateParser: function (value) {
+            value = value.split('/');
+            return Date.UTC(
+                parseInt(value[2]),
+                parseInt(value[0])-1,
+                parseInt(value[1])
+            );
+        }
+    },
+    navigator: {
+        enabled: false
+    },
+    scrollbar: {
+        enabled: false
+    },
+    xAxis: {
+        type: 'datetime',
+        ordinal: false,
+        events: {
+            afterSetExtremes: function () {
+                renderDailyGraphStats(this);
+            }
+        }
+    },
+    yAxis: [{
+        title: {
+            text: 'Patrons'
+        },
+        opposite: false
+    }, {
+        title: {
+            text: 'Earnings per '+creatorRange
+        }
+    }],
+    tooltip: {
+        shared: true,
+        backgroundColor: '#FFF',
+        borderColor: 'black',
+        borderRadius: 10,
+        borderWidth: 1,
+        formatter: function() {
+            var aDate = new Date(this.points[0].key);
+            var thatDate = new Date (aDate.getTime() + aDate.getTimezoneOffset() * 60 * 1000);
+            var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+
+            var graphTooltip = months[thatDate.getMonth()] + ' ' + thatDate.getDate() + ', ' + thatDate.getFullYear() + '<br />' +
+                '<span style="color:'+this.points[0].point.color+';">●</span> ' +
+                'Patrons: <strong>' + this.points[0].y.format(0) + '</strong><br />';
+
+            if (this.points[1] != null) {
+                graphTooltip += '<span style="color:'+this.points[1].point.color+';">●</span> ' +
+                    'Earnings per '+creatorRange+': <strong>$' + this.points[1].y.format(0) + '</strong><br />' +
+                    '<span style="color:#00c0ef;">●</span> ' +
+                    'Per patron: <strong>$' + (this.points[1].y/this.points[0].y).format(2) + '</strong>';
+            }
+            return  graphTooltip;
+        }
+    },
+    series: [{
+        name: 'Patrons',
+        color: '#f39c12',
+        data: dailyGraph_patronSeriesData
+    }, {
+        name: 'Earnings per '+creatorRange,
+        color: '#00a65a',
+        data: dailyGraph_earningsSeriesData,
+        yAxis: 1
+    }]
+}, function(chart){
+    // apply the date pickers
+    setTimeout(function() {
+        $('input.highcharts-range-selector', $(chart.container).parent()).datepicker({
+            format: 'mm/dd/yyyy',
+            todayBtn: "linked",
+            orientation: "auto",
+            autoclose: true,
+            todayHighlight: true,
+            startDate: startDate,
+            endDate: '-1d'
+        })
+        .on('show', function(e){
+            this.blur();
+        });
+        renderDailyGraphStats(chart);
+    }, 0)
+});
+
+$('#rankingHistoryGraph').highcharts('StockChart', {
+    chart: {
+        type: 'line'
+    },
+    title: {
+        text: creatorName
+    },
+    subtitle: {
+        text: 'Patreon ' + categoryTitle + ' Rank'
+    },
+    rangeSelector: {
+        selected: 4,
+        inputEnabled: false,
+        inputDateFormat: '%m/%d/%Y',
+        inputEditDateFormat: '%m/%d/%Y',
+        // Custom parser to parse the '%m/%d/%Y' format
+        inputDateParser: function (value) {
+            value = value.split('/');
+            return Date.UTC(
+                parseInt(value[2]),
+                parseInt(value[0])-1,
+                parseInt(value[1])
+            );
+        }
+    },
+    navigator: {
+        enabled: false
+    },
+    scrollbar: {
+        enabled: false
+    },
+    xAxis: {
+        type: 'datetime',
+        ordinal: false
+    },
+    yAxis: [{
+        title: {
+            text: 'Rank'
+        },
+        allowDecimals: false,
+        min: 1,
+        startOnTick: false,
+        opposite: false,
+        reversed: true
+    }],
+    tooltip: {
+        shared: true,
+        backgroundColor: '#FFF',
+        borderColor: 'black',
+        borderRadius: 10,
+        borderWidth: 1,
+        formatter: function() {
+            var aDate = new Date(this.points[0].key);
+            var thatDate = new Date (aDate.getTime() + aDate.getTimezoneOffset() * 60 * 1000);
+            var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+
+            var graphTooltip = months[thatDate.getMonth()] + ' ' + thatDate.getDate() + ', ' + thatDate.getFullYear() + '<br />' +
+                '<span style="color:'+this.points[0].point.color+';">●</span> ' +
+                categoryTitle + ' Rank: <strong>' + this.points[0].y.format(0) + '</strong><br />';
+
+            return  graphTooltip;
+        }
+    },
+    series: [{
+        name: 'Rank',
+        color: '#3c8dbc',
+        data: rankingHistoryGraph_seriesData
+    }]
+}, function(chart){
+    // apply the date pickers
+    setTimeout(function() {
+        $('input.highcharts-range-selector', $(chart.container).parent()).datepicker({
+            format: 'mm/dd/yyyy',
+            todayBtn: "linked",
+            orientation: "auto",
+            autoclose: true,
+            todayHighlight: true,
+            startDate: startDate,
+            endDate: '-1d'
+        })
+        .on('show', function(e){
+            this.blur();
+        });
+    }, 0)
+});
+
+function renderFacebookLikesGraphStats(graphObj){
+    var graphStats = getGraphStats(graphObj.series["0"].points);
+    renderGraphStat('#facebookLikesGraph-patronstats .graphstats-stat',graphStats.end_formatted);
+    renderGraphStat('#facebookLikesGraph-patronstats .graphstats-substat',graphStats.percent_markup);
+}
+
+$('#facebookLikesGraph').highcharts('StockChart', {
+    chart: {
+        type: 'line'
+    },
+    title: {
+        text: creatorName
+    },
+    subtitle: {
+        text: 'Facebook'
+    },
+    rangeSelector: {
+        selected: 2,
+        inputEnabled: false,
+        inputDateFormat: '%m/%d/%Y',
+        inputEditDateFormat: '%m/%d/%Y',
+        // Custom parser to parse the '%m/%d/%Y' format
+        inputDateParser: function (value) {
+            value = value.split('/');
+            return Date.UTC(
+                parseInt(value[2]),
+                parseInt(value[0])-1,
+                parseInt(value[1])
+            );
+        }
+    },
+    navigator: {
+        enabled: false
+    },
+    scrollbar: {
+        enabled: false
+    },
+    xAxis: {
+        type: 'datetime',
+        ordinal: false,
+        events: {
+            afterSetExtremes: function () {
+                renderFacebookLikesGraphStats(this);
+            }
+        },
+    },
+    yAxis: {
+        opposite: false
+    },
+    tooltip: {
+        shared: true,
+        backgroundColor: '#FFF',
+        borderColor: 'black',
+        borderRadius: 10,
+        borderWidth: 1,
+        formatter: function() {
+            var aDate = new Date(this.points[0].key);
+            var thatDate = new Date (aDate.getTime() + aDate.getTimezoneOffset() * 60 * 1000);
+            var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+
+            return months[thatDate.getMonth()] + ' ' + thatDate.getDate() + ', ' + thatDate.getFullYear() + '<br />' +
+                '<span style="color:'+this.points[0].point.color+';">●</span> ' +
+                'Facebook Likes: <strong>' + this.points[0].y.format(0) + '</strong><br />';
+        }
+    },
+    series: [{
+        name: 'Facebook Likes',
+        color: '#3b5998',
+        data: facebookSeriesData
+    }]
+}, function(chart){
+    // apply the date pickers
+    setTimeout(function() {
+        renderFacebookLikesGraphStats(chart);
+    }, 0)
+});
+
+function renderTwitterFollowersGraphStats(graphObj){
+    var graphStats = getGraphStats(graphObj.series["0"].points);
+    renderGraphStat('#twitterFollowersGraph-patronstats .graphstats-stat',graphStats.end_formatted);
+    renderGraphStat('#twitterFollowersGraph-patronstats .graphstats-substat',graphStats.percent_markup);
+}
+
+$('#twitterFollowersGraph').highcharts('StockChart', {
+    chart: {
+        type: 'line'
+    },
+    title: {
+        text: creatorName
+    },
+    subtitle: {
+        text: 'Twitter'
+    },
+    rangeSelector: {
+        selected: 2,
+        inputEnabled: false,
+        inputDateFormat: '%m/%d/%Y',
+        inputEditDateFormat: '%m/%d/%Y',
+        // Custom parser to parse the '%m/%d/%Y' format
+        inputDateParser: function (value) {
+            value = value.split('/');
+            return Date.UTC(
+                parseInt(value[2]),
+                parseInt(value[0])-1,
+                parseInt(value[1])
+            );
+        }
+    },
+    navigator: {
+        enabled: false
+    },
+    scrollbar: {
+        enabled: false
+    },
+    xAxis: {
+        type: 'datetime',
+        ordinal: false,
+        events: {
+            afterSetExtremes: function () {
+                renderTwitterFollowersGraphStats(this);
+            }
+        },
+    },
+    yAxis: {
+        opposite: false
+    },
+    tooltip: {
+        shared: true,
+        backgroundColor: '#FFF',
+        borderColor: 'black',
+        borderRadius: 10,
+        borderWidth: 1,
+        formatter: function() {
+            var aDate = new Date(this.points[0].key);
+            var thatDate = new Date (aDate.getTime() + aDate.getTimezoneOffset() * 60 * 1000);
+            var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+
+            return months[thatDate.getMonth()] + ' ' + thatDate.getDate() + ', ' + thatDate.getFullYear() + '<br />' +
+                '<span style="color:'+this.points[0].point.color+';">●</span> ' +
+                'Twitter Followers: <strong>' + this.points[0].y.format(0) + '</strong><br />';
+        }
+    },
+    series: [{
+        name: 'Twitter Followers',
+        color: '#0084b4',
+        data: twitterSeriesData
+    }]
+}, function(chart){
+    // apply the date pickers
+    setTimeout(function() {
+        renderTwitterFollowersGraphStats(chart);
+    }, 0)
+});
+
+function renderYoutubeSubscribersGraphStats(graphObj){
+    var graphStats = getGraphStats(graphObj.series["0"].points);
+    renderGraphStat('#youtubeSubscribersGraph-patronstats .graphstats-stat',graphStats.end_formatted);
+    renderGraphStat('#youtubeSubscribersGraph-patronstats .graphstats-substat',graphStats.percent_markup);
+}
+
+
+$('#youtubeSubscribersGraph').highcharts('StockChart', {
+    chart: {
+        type: 'line'
+    },
+    title: {
+        text: creatorName
+    },
+    subtitle: {
+        text: 'Youtube'
+    },
+    rangeSelector: {
+        selected: 2,
+        inputEnabled: false,
+        inputDateFormat: '%m/%d/%Y',
+        inputEditDateFormat: '%m/%d/%Y',
+        // Custom parser to parse the '%m/%d/%Y' format
+        inputDateParser: function (value) {
+            value = value.split('/');
+            return Date.UTC(
+                parseInt(value[2]),
+                parseInt(value[0])-1,
+                parseInt(value[1])
+            );
+        }
+    },
+    navigator: {
+        enabled: false
+    },
+    scrollbar: {
+        enabled: false
+    },
+    xAxis: {
+        type: 'datetime',
+        ordinal: false,
+        events: {
+            afterSetExtremes: function () {
+                renderYoutubeSubscribersGraphStats(this);
+            }
+        },
+    },
+    yAxis: {
+        opposite: false
+    },
+    tooltip: {
+        shared: true,
+        backgroundColor: '#FFF',
+        borderColor: 'black',
+        borderRadius: 10,
+        borderWidth: 1,
+        formatter: function() {
+            var aDate = new Date(this.points[0].key);
+            var thatDate = new Date (aDate.getTime() + aDate.getTimezoneOffset() * 60 * 1000);
+            var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+
+            return months[thatDate.getMonth()] + ' ' + thatDate.getDate() + ', ' + thatDate.getFullYear() + '<br />' +
+                '<span style="color:'+this.points[0].point.color+';">●</span> ' +
+                'Youtube Subscribers: <strong>' + this.points[0].y.format(0) + '</strong><br />';
+        }
+    },
+    series: [{
+        name: 'Youtube Subscribers',
+        color: '#cd201f',
+        data: youtubeSeriesData
+    }]
+}, function(chart){
+    // apply the date pickers
+    setTimeout(function() {
+        renderYoutubeSubscribersGraphStats(chart);
+    }, 0)
+});

@@ -1,0 +1,112 @@
+#story .container{
+    width:100%;
+    height: 430px;
+    padding:0;
+    margin:0;
+    background-color: var(--mainWhite);
+  }
+
+#story .row{
+    width: 100%;
+    height: 450px;
+    padding: 0;
+    margin: 0;
+    /* background-color: var(--mainLight); */
+}
+
+#story .col {
+    padding: 10px;
+    margin: 0;
+    height: 450px;
+}
+
+.storyDiv{
+    height: 430px;
+}
+
+.storyDiv p{
+    font-size: 3vh;
+    text-align: center;
+    margin: auto;
+}
+
+#storyRisk {
+    background: linear-gradient(to right, rgba(29, 53, 87, 1.00), rgba(29, 53, 87, 0.90));
+}
+#storyRisk p{
+    padding: 5%;
+    font-size: 4vh;
+    color: var(--mainWhite);
+}
+
+#storyBurnSources {
+    background: linear-gradient(to bottom right, rgba(29, 53, 87, 0.90), rgba(29, 53, 87, 0.75));
+}
+
+#storyBurnSources img {
+    max-height: 150px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 25%;
+    border-radius:50%;
+    background-color: var(--mainWhite);
+    padding: 20px;
+}
+#storyBurnSources p {
+    text-align: center;
+    padding:7%;
+    font-size: 4vh;
+    color: var(--mainWhite)
+}
+
+#storyAmbulance {
+    background: linear-gradient(to left, rgba(29, 53, 87, 0.75), rgba(29, 53, 87, 0.60));
+}
+
+#storyAmbulance img{
+    border: none;
+    max-width: 50%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;  
+    border-radius:50%;
+    background-color: var(--mainWhite);   
+    padding: 30px;
+}
+#storyAmbulance p {
+    text-align: center;
+    color: var(--mainWhite);
+    font-size: 4vh;
+    padding: 5%;
+}
+
+#storyPrimaryCare {
+    background: linear-gradient(to left, rgba(29, 53, 87, 0.60), rgba(29, 53, 87, 0.45));
+}
+
+#storyPrimaryCare img {
+    max-height: 250px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius:50%;
+    background-color: var(--mainWhite);
+    padding: 20px;
+}
+#storyPrimaryCare p {
+    text-align: center;
+    color: var(--mainLight)
+}
+
+#storyHelicopter {
+    background: linear-gradient(to bottom left, rgba(29, 53, 87, 0.45), rgba(29, 53, 87, 0.30));
+}
+
+#storyBurnCenter {
+    background: linear-gradient(to right, rgba(29, 53, 87, 0.30), rgba(29, 53, 87, 0.15));
+}
+
+#storySolution {
+    background: linear-gradient(to right, rgba(29, 53, 87, 0.15), rgba(29, 53, 87, 0.0));
+}

@@ -1,0 +1,30 @@
+#GUI{
+    display: block;
+    width:100%;
+    background-color: var(--mainWhite);
+}
+#GUI .container{
+    width:90%;
+}
+
+#GUI .GUICol{
+    height: 500px;
+    padding: 30px;
+    font-size: 16px;
+    color: var(--mainDark);
+    text-align: center;
+}
+
+#GUI .GUICol img{
+    max-width: 800px;
+    min-width: 700px;
+    padding: 0;
+    margin: 20px 0;
+}
+
+@media (max-width: 769px) {
+    #GUI .GUICol img{
+        max-width: 700px;
+        min-width: 300px;
+    }
+}

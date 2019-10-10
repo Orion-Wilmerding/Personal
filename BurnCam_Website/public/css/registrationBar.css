@@ -1,0 +1,87 @@
+#regBar{
+  display: block;
+  background-color: var(--mainWhite);
+}
+
+#regBar .container{
+  width:90%;
+  background-color: var(--mainWhite);
+}
+@media only screen and (max-width: 100px) {
+  #regBar .container{
+    height: 1200px;
+  }
+}
+
+#regBar .row{
+  width: 100%;
+}
+
+#regBar .regCol{
+  height: 600px;
+}
+
+.regTitle{
+  height: 10%;
+  width: 600px;
+  margin: auto;
+  margin-top: 2.5%;
+  margin-bottom: 10px;
+  background-color: var(--mainDark);
+
+  color: var(--mainWhite);
+  font-size: 40px;
+  text-align: center;
+}
+
+
+.regBox{
+  height: 80%;
+  width: 600px;
+  margin: auto;
+  margin-top:0;
+  margin-bottom:10%;
+  padding: 5%;
+
+  background-color: var(--mainLight);
+}
+
+#patientRegBox {
+  background: url("../images/patientReg.jpg") no-repeat center;
+  background-size: 100% 100%;
+}
+
+#docRegBox {
+  background: url("../images/docReg.jpg") no-repeat center;
+  background-size: 100% 100%;
+}
+
+.regButtonBox{
+  width: 220px;
+  height: 180px;
+  margin:auto;
+  margin-top: 70px;
+  text-align: center;
+  border-radius: 0 50px 0 50px;
+  background: rgba(237, 246, 249, .7);
+}
+
+.regButtonBox p{
+  padding-top:20px;
+}
+
+.regButtonBox button{
+  width: 140px;
+  height: 50px;
+  font-size: 30px;
+  background-color: var(--mainWhite);
+  color: var(--mainDark);
+  border: 2px solid var(--mainDark);
+  border-radius: 0 15px 0 15px;
+  box-shadow: 2px 2px 5px 2px;
+}
+
+.regButtonBox button:hover{
+  background-color: var(--mainDark);
+  color: var(--mainWhite);
+}

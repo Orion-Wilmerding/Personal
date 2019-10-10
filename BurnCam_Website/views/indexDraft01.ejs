@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="BurnCam" 	content="v01" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>BurnCam Medical - Augmented Telemedicine</title>
+    
+    <!-- Bootstrap -->
+    <link href='http://fonts.googleapis.com/css?family=Raleway:700,400,300' rel='stylesheet' type='text/css'>
+    <link href="css/font-awesome.min.css" rel="stylesheet">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- W3 School -->
+    <link href="https://www.w3schools.com/w3css/4/w3.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="css/styles.css" rel="stylesheet">
+    <link href="css/nav.css" rel="stylesheet">
+    <link href="css/home.css" rel="stylesheet">
+    <link href="css/registrationbar.css" rel="stylesheet">
+    <link href="css/story.css" rel="stylesheet">
+    <link href="css/GUIDemo.css" rel="stylesheet">
+	
+	  <script src="/socket.io/socket.io.js"></script>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+
+    <!-- ======================================= -->
+	  <!-- ========== BODY PAGE CONTENT ========== -->
+    <!-- ======================================= -->
+    
+    <div id="homeContent">
+
+      <!-- ======================================= -->
+      <!-- ============ NAVIGATION BAR =========== -->
+      <!-- ======================================= -->
+      <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <div class="container-fluid">
+          <!-- Brand and toggle get grouped for better mobile display -->
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-main">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#HomeAnchor"><img id="navBrand" class="navBrand" src="images/Logo.png"></a>
+          </div> <!-- end navbar-header-->
+          <div class="collapse navbar-collapse" id="navbar-collapse-main">
+            <ul class="nav navbar-nav navbar-right">
+              <li><a href="#HomeAnchor">Home</a></li>
+              <li><a href="#PatientsAnchor">Patient</a></li>
+              <li><a href="#PhysiciansAnchor">Physician</a></li>
+              <li><a href="#PhysiciansAnchor">Contact</a></li>
+              <li><button class="navButton" id="loginButton" href="#Login">Login</button></li>
+              <li><button class="navButton" id="registerButton" href="#Register">Register</button></li>
+
+            </ul>
+          </div><!-- end navbar-collapse -->
+        </div><!-- end container-fluid -->
+      </nav><!-- end nav-->
+
+      <!-- ======================================= -->
+      <!-- ================ Home ================= -->
+      <!-- ======================================= -->
+
+      <a class="anchor" id="homeAnchor"></a>
+      <div id="home">
+        <div id="homeTextBox">
+          <div id="homeText">
+            <p><h1>BurnCam Medical</h1></p>
+            <p><h3>- Augmented Telemedicine -</h3></p>
+            <p><h3>Connecting Patients and Experts</h3></p>
+          </div> <!-- end homeText -->
+        </div> <!-- end homeTextBox -->
+      </div> <!-- end home -->
+
+      <!-- =============================================== -->
+      <!-- ============= Registration Bar ================ -->
+      <!-- =============================================== -->
+
+      <div id="registrationBar">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-6 registrationBox">  
+              <div id="patientRegistration">         
+                <div class="halfCircle">
+                  <img class="registration" src="images/userIcon.png">
+                </div> <!-- End halfCircle -->
+                <div class="registrationBarText">
+                  <p>Patients Enter Here!</p>
+                  <button class="button" id="loginButton" href="#Login">Login</button>
+                  <button class="button" id="registerButton" href="#Register">Register</button>
+                </div> <!-- end registrationBarText -->
+              </div> <!-- end patientRegistration -->
+            </div> <!-- end col -->
+    
+            <div class="col-lg-6 registrationBox">  
+              <div id="doctorRegistration">         
+                <div class="halfCircle">
+                  <img class="registration" src="images/doctorIcon.png">
+                </div> <!-- End halfCircle -->
+                <div class="registrationBarText">
+                  <p>Physician's Enter Here!</p>
+                  <button class="button" id="loginButton" href="#Login">Login</button>
+                  <button class="button" id="registerButton" href="#Register">Register</button>
+                </div> <!-- end registrationBarText -->
+              </div><!-- end doctorRegistration -->
+            </div><!-- end col -->
+          </div> <!-- end row -->
+        </div> <!-- end container -->
+      </div> <!-- end registrationBar -->
+
+      <!-- ======================================== -->
+      <!-- ================ Story ================= -->
+      <!-- ======================================== -->
+
+      <div class="break">
+        Current Burn Care
+      </div>
+
+      <div id="story">
+        <div class="container">
+          <div class="row">
+
+            <div class="col col-lg-4">  
+              <div class="storyDiv" id="storyRisk">         
+                <p>
+                  Care begins with accurate <strong>diagnosis</strong>, 
+                  and accuracy <strong>requires</strong> an <strong>expert</strong>.
+                  <br>
+                  <br>
+                  However a burn surgeon's <strong>expertise</strong> is 
+                  exceptionally <strong>rare</strong>
+                </p>
+              </div><!-- end storyRisk -->
+            </div><!-- end col -->
+
+            <div class="col col-lg-8">  
+              <div class="storyDiv"> 
+                <div class="container" id="storyBurnSources">
+                  <div class="row">
+                    <div class="col-lg-3">
+                      <img src="images/flameIcon.png">
+                      <p>Flame</p>
+                    </div> <!-- end col -->
+                    <div class="col-lg-3">
+                      <img src="images/hotWaterIcon.png">
+                      <p>Scald</p>
+                    </div> <!-- end col -->  
+                    <div class="col-lg-3">
+                      <img src="images/hotOvenIcon.png">
+                      <p>Heat</p>
+                    </div> <!-- end col -->  
+                    <div class="col-lg-3">
+                      <img src="images/electricityIcon.png">
+                      <p>Shock</p>
+                    </div> <!-- end col -->
+                    <p></p>
+                    <p>Burn injuries, on the other hand, are not.</p>
+                  </div> <!-- end row -->  
+                </div> <!-- end container -->  
+              </div><!-- End storyBurnSources -->
+            </div>
+
+          </div> <!-- End row -->
+              
+          <div class="row">
+
+            <div class="col col-lg-4">  
+              <div class="storyDiv" id="storyHelicopter">         
+                <p>Helicopter Transport</p>
+                
+              </div><!-- End storyHelicopter -->
+            </div><!-- End col -->
+  
+            <div class="col col-lg-4">  
+              <div class="storyDiv" id="storyPrimaryCare">      
+                <p>Local clinics and hospitals often </p>
+                <img src="images/clinicIcon.png">      
+                <p></p>
+              </div><!-- End storyPrimaryCare -->
+            </div>
+                  
+            <div class="col col-lg-4">  
+              <div class="storyDiv" id="storyAmbulance">
+                <img src="images/ambulanceIcon.png">     
+                <p><strong>Fast</strong> treatment is <strong>Critical</strong></p>
+              </div><!-- End storyAmbulance -->
+            </div>
+
+          </div> <!-- End row -->
+
+          <div class="row">
+
+            <div class="col col-lg-8">  
+              <div class="storyDiv" id="storyBurnCenter">         
+                <p>Burn Center Image</p>
+              </div><!-- End storyBurnCenter -->
+            </div><!-- End col -->
+    
+            <div class="col col-lg-4">  
+              <div class="storyDiv" id="storySolution">         
+                <p>BurnCam Solution!</p>
+              </div><!-- End storySolution -->
+            </div>
+    
+          </div> <!-- End row -->
+        </div> <!-- End container -->
+      </div> <!-- End story -->
+
+      <!-- =================================================== -->
+      <!-- ================ BurnCam Solution ================= -->
+      <!-- =================================================== -->
+
+      <div class="break">
+          Current Burn Care
+      </div>
+ 
+      <div id="webDemo">
+        <div class="container">
+          <div class="row">
+            
+            <div class="col-lg-6" id="browserDemo">
+              <img src="images/laptopArt.jpg">
+            </div> <!-- end col -->
+
+            <div class="col-lg-6" id="browserTabs">
+            </div> <!-- end col -->
+
+          </div> <!-- end row -->
+        </div> <!-- end container -->
+      </div> <!-- end webDemo -->
+      
+
+      <div class="w3-sidebar w3-bar-block w3-light-grey w3-card" style="width:130px">
+          <h5 class="w3-bar-item">Menu</h5>
+          <button class="w3-bar-item w3-button tablink" onclick="openCity(event, 'London')">London</button>
+          <button class="w3-bar-item w3-button tablink" onclick="openCity(event, 'Paris')">Paris</button>
+          <button class="w3-bar-item w3-button tablink" onclick="openCity(event, 'Tokyo')">Tokyo</button>
+        </div>
+        
+        <div style="margin-left:130px">
+          <div class="w3-padding">Vertical Tab Example (sidebar)</div>
+        
+          <div id="London" class="w3-container city" style="display:none">
+            <h2>London</h2>
+            <p>London is the capital city of England.</p>
+            <p>It is the most populous city in the United Kingdom, with a metropolitan area of over 13 million inhabitants.</p>
+          </div>
+        
+          <div id="Paris" class="w3-container city" style="display:none">
+            <h2>Paris</h2>
+            <p>Paris is the capital of France.</p> 
+            <p>The Paris area is one of the largest population centers in Europe, with more than 12 million inhabitants.</p>
+          </div>
+        
+          <div id="Tokyo" class="w3-container city" style="display:none">
+            <h2>Tokyo</h2>
+            <p>Tokyo is the capital of Japan.</p>
+            <p>It is the center of the Greater Tokyo Area, and the most populous metropolitan area in the world.</p>
+          </div>
+        
+        </div>
+
+    <!-- Include navbar shrink on scroll -->
+    <script src="js/nav.js"></script>
+
+    <!-- Include GUI Demo Button Switching -->
+    <script src="js/GUIDemo.js"></script>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
+	
+	<!-- Our project javascript files -->
+	<script src="js/webrtc.js"></script>
+	<script src="js/app.js"></script>
+  </body>
+</html>

@@ -1,0 +1,11 @@
+Adjustments to Make this code work:
+
+When running npm install to create the node_modules files, two errors appear.
+Express.io doesn't link to coffee-script and connect properly.
+Udemy section 4: WebRTC Signaling, chp. 14 Setting Up Socket.io Q&A
+shows how to fix this
+Go to node_modules/express.io/switch.js and remove './node_modules' from
+'./node_modules/coffee-script'
+Similarly, in express.io/lib/index.coffee remove './node_modules' from 
+'./node_modules/connect'
+

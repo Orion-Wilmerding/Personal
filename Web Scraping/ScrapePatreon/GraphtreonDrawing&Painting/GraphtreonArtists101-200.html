@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="en"><head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Patreon Drawing &amp; Painting: Rank + Sort + Filter</title>
+
+  <meta name="description" content="Sortable list of Patreon drawing &amp; painting creators. Sort by clicking on the the top of each column. Filter by typing in the filter box. Updated daily.">
+
+  <!-- Open Graph data -->
+  <meta property="og:title" content="Patreon Drawing &amp; Painting: Rank + Sort + Filter">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://graphtreon.com/patreon-creators/drawing-painting">
+  
+  <meta property="og:description" content="Sortable list of Patreon drawing &amp; painting creators. Sort by clicking on the the top of each column. Filter by typing in the filter box. Updated daily.">
+  <meta property="og:site_name" content="Graphtreon">
+
+  <!-- Twitter Card data -->
+  <meta name="twitter:card" content="Sortable list of Patreon drawing &amp; painting creators. Sort by clicking on the the top of each column. Filter by typing in the filter box. Updated daily.">
+
+  <!-- favicons -->
+  <link rel="shortcut icon" href="https://graphtreon.com/favicon-16x16.png" type="image/x-icon" sizes="16x16">
+  <link rel="shortcut icon" href="https://graphtreon.com/favicon-32x32.png" type="image/x-icon" sizes="32x32">
+
+  <!-- iOS 7 or prior (legacy) -->
+  <link rel="apple-touch-icon" sizes="144x144" href="https://graphtreon.com/apple-touch-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="https://graphtreon.com/apple-touch-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="https://graphtreon.com/apple-touch-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="57x57" href="https://graphtreon.com/apple-touch-icon-57x57.png">
+
+  <!-- iOS 8 and later -->
+  <link rel="apple-touch-icon" sizes="180x180" href="https://graphtreon.com/apple-touch-icon-180x180.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="https://graphtreon.com/apple-touch-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="https://graphtreon.com/apple-touch-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="https://graphtreon.com/apple-touch-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="https://graphtreon.com/apple-touch-icon-60x60.png">
+
+  <!-- launcher (Android/Chrome) -->
+  <link rel="manifest" href="https://graphtreon.com/manifest.json">
+
+	<!-- Bootstrap 3.3.2 -->
+	<link rel="stylesheet" href="GraphtreonArtists101-200_files/bootstrap.css">
+	<!-- Font Awesome Icons -->
+    <link href="GraphtreonArtists101-200_files/font-awesome.css" rel="stylesheet" type="text/css">
+    <!-- Ionicons -->
+    <link href="GraphtreonArtists101-200_files/ionicons.css" rel="stylesheet" type="text/css">
+    <!-- DataTables -->
+    <link href="GraphtreonArtists101-200_files/jquery.css" rel="stylesheet" type="text/css">
+    <link href="GraphtreonArtists101-200_files/bootstrap-datepicker.css" rel="stylesheet" type="text/css">
+    <link href="GraphtreonArtists101-200_files/bootstrap-slider.css" rel="stylesheet" type="text/css">
+
+    <link href="GraphtreonArtists101-200_files/AdminLTE.css" rel="stylesheet" type="text/css">
+    <link href="GraphtreonArtists101-200_files/skin-blue.css" rel="stylesheet" type="text/css">
+    <link href="GraphtreonArtists101-200_files/select2.css" rel="stylesheet">
+    <link href="GraphtreonArtists101-200_files/styles.css" rel="stylesheet" type="text/css">
+
+	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="/js/html5shiv.js"></script>
+        <script src="/js/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+<body class="skin-blue layout-top-nav">
+	<div class="wrapper">
+      
+      <header class="main-header">               
+        <nav class="navbar navbar-static-top">
+          <div class="container">
+          <div class="container-fluid">
+          <div class="navbar-header">
+          	<a href="https://graphtreon.com/">
+            	<img class="logo-header pull-left" src="GraphtreonArtists101-200_files/GraphtreonHeaderLogo.png" alt="Graphtreon">
+            </a>
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
+              <i class="fa fa-bars"></i>
+            </button>
+          </div>
+
+          <div class="collapse navbar-collapse" id="navbar-collapse">
+            <ul class="nav navbar-nav">
+              <li><a href="https://graphtreon.com/top-patreon-creators">Top Creators</a></li>
+              <li><a href="https://graphtreon.com/achievements">Achievements</a></li>
+              <li><a href="https://graphtreon.com/patreon-creators">All Creators</a></li>
+              <li class="hidden-sm"><a href="https://graphtreon.com/patreon-stats">Patreon Stats</a></li>
+            </ul>
+            <div class="navbar-form navbar-right">
+              <select id="searchAutocomplete" multiple="multiple" tabindex="-1" class="select2-hidden-accessible" aria-hidden="true"></select><span class="select2 select2-container select2-container--default" dir="ltr" style="width: 200px;"><span class="selection"><span class="select2-selection select2-selection--multiple" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="-1"><ul class="select2-selection__rendered"><li class="select2-search select2-search--inline"><input class="select2-search__field" type="search" tabindex="0" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" role="textbox" aria-autocomplete="list" placeholder="Search Creators" style="width: 198px;"></li></ul></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
+            </div>
+
+            <ul class="nav navbar-nav navbar-right">
+                                    <a href="https://graphtreon.com/login/patreon" class="login-with-patreon">
+                        Log in with Patreon
+                    </a>
+                            </ul>
+          </div><!-- /.navbar-collapse -->
+          </div><!-- /.container-fluid -->
+          </div><!-- /.container -->
+        </nav>
+      </header>
+
+  <div class="container">    
+	 <!-- Full Width Column -->
+<div class="content-wrapper" style="min-height: 301px;">
+	<div class="container-fluid">
+		<div class="row">
+	<div class="col-md-12">
+		<div class="box box-solid">
+			<div class="box-body">
+				<div class="text-center">
+					Graphtreon needs your support! $2 a month from you makes all the difference. <a href="https://www.patreon.com/bePatron?c=267852">Become a patron</a>
+                </div>
+			</div>
+		</div>
+	</div>
+</div>
+
+        <section class="category-nav">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="btn-group">
+                                                <a type="button" href="https://graphtreon.com/patreon-creators" class="btn btn-outline ">Top 1000</a>
+                                                                                <a type="button" href="https://graphtreon.com/patreon-creators/podcasts" class="btn btn-outline ">Podcasts</a>
+                                                                                <a type="button" href="https://graphtreon.com/patreon-creators/video" class="btn btn-outline ">Video</a>
+                                                                                <a type="button" href="https://graphtreon.com/patreon-creators/games" class="btn btn-outline ">Games</a>
+                                                                                <a type="button" href="https://graphtreon.com/patreon-creators/cosplay" class="btn btn-outline ">Cosplay</a>
+                                                                                <a type="button" href="https://graphtreon.com/patreon-creators/comics" class="btn btn-outline ">Comics</a>
+                                                                                <a type="button" href="https://graphtreon.com/patreon-creators/writing" class="btn btn-outline ">Writing</a>
+                                                                                <a type="button" href="https://graphtreon.com/patreon-creators/music" class="btn btn-outline ">Music</a>
+                                                                                <a type="button" href="https://graphtreon.com/patreon-creators/adult-games" class="btn btn-outline ">Adult Games</a>
+                                                                                <a type="button" href="https://graphtreon.com/patreon-creators/adult-photography" class="btn btn-outline ">Adult Photography</a>
+                                                                                <a type="button" href="https://graphtreon.com/patreon-creators/adult-video" class="btn btn-outline ">Adult Video</a>
+                                                                                <a type="button" href="https://graphtreon.com/patreon-creators/adult-cosplay" class="btn btn-outline ">Adult Cosplay</a>
+                                                <div class="btn-group" role="group">
+                            <button type="button" class="btn btn-outline dropdown-toggle" data-toggle="dropdown">
+                                More <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu">
+                                                                    <li>
+                                        <a href="https://graphtreon.com/patreon-creators/animation" class=" ">Animation</a>
+                                    </li>
+                                                                    <li>
+                                        <a href="https://graphtreon.com/patreon-creators/drawing-painting" class=" ">Drawing &amp; Painting</a>
+                                    </li>
+                                                                    <li>
+                                        <a href="https://graphtreon.com/patreon-creators/photography" class=" ">Photography</a>
+                                    </li>
+                                                                    <li>
+                                        <a href="https://graphtreon.com/patreon-creators/crafts-diy" class=" ">Crafts &amp; DIY</a>
+                                    </li>
+                                                                    <li>
+                                        <a href="https://graphtreon.com/patreon-creators/dance-theater" class=" ">Dance &amp; Theater</a>
+                                    </li>
+                                                                    <li>
+                                        <a href="https://graphtreon.com/patreon-creators/magazine" class=" ">Magazine</a>
+                                    </li>
+                                                                    <li>
+                                        <a href="https://graphtreon.com/patreon-creators/other" class=" ">Other</a>
+                                    </li>
+                                                                    <li>
+                                        <a href="https://graphtreon.com/patreon-creators/adult-animation" class=" ">Adult Animation</a>
+                                    </li>
+                                                                    <li>
+                                        <a href="https://graphtreon.com/patreon-creators/adult-comics" class=" ">Adult Comics</a>
+                                    </li>
+                                                                    <li>
+                                        <a href="https://graphtreon.com/patreon-creators/adult-music" class=" ">Adult Music</a>
+                                    </li>
+                                                                    <li>
+                                        <a href="https://graphtreon.com/patreon-creators/adult-writing" class=" ">Adult Writing</a>
+                                    </li>
+                                                                    <li>
+                                        <a href="https://graphtreon.com/patreon-creators/adult-drawing-painting" class=" ">Adult Drawing &amp; Painting</a>
+                                    </li>
+                                                                    <li>
+                                        <a href="https://graphtreon.com/patreon-creators/adult-podcasts" class=" ">Adult Podcasts</a>
+                                    </li>
+                                                                    <li>
+                                        <a href="https://graphtreon.com/patreon-creators/adult-crafts-diy" class=" ">Adult Crafts &amp; DIY</a>
+                                    </li>
+                                                                    <li>
+                                        <a href="https://graphtreon.com/patreon-creators/adult-dance-theater" class=" ">Adult Dance &amp; Theater</a>
+                                    </li>
+                                                                    <li>
+                                        <a href="https://graphtreon.com/patreon-creators/adult-magazine" class=" ">Adult Magazine</a>
+                                    </li>
+                                                                    <li>
+                                        <a href="https://graphtreon.com/patreon-creators/adult-other" class=" ">Adult Other</a>
+                                    </li>
+                                                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+		<section class="content-header">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1>
+                        Patreon Drawing &amp; Painting
+                    </h1>
+                    <p>Sortable list of Patreon drawing &amp; painting 
+creators. Sort by clicking on the the top of each column. Filter by 
+typing in the filter box. Updated daily.</p>
+                </div>
+            </div>
+		</section>
+
+		<!-- Main content -->
+		<section class="content">
+
+			<div class="row">
+				<div class="col-md-12">
+					<div class="box box-solid">
+						<div class="box-body">
+							<form class="form-inline">
+								<div class="pull-right">
+									<div class="form-group">
+										<label for="filter-box">Filter</label>
+										<input type="text" class="form-control" id="filter-box" placeholder="ex: science">
+									</div>
+								</div>
+								<div class="pull-left">
+									<select id="filter-btns-patrons" class="form-control">
+										<option value="patron-count-1">1+ patrons</option>
+										<option value="patron-count-10" selected="selected">10+ patrons</option>
+										<option value="patron-count-30">30+ patrons</option>
+										<option value="patron-count-100">100+ patrons</option>
+										<option value="patron-count-300">300+ patrons</option>
+									</select>
+								</div>
+							</form>
+							
+							
+
+							<div id="allCreatorsTable_wrapper" class="dataTables_wrapper no-footer"><div><div class="dataTables_length" id="allCreatorsTable_length"><label>
+								
+								
+							</label></div><div><table id="allCreatorsTable" class="table table-striped table-bordered table-hover dataTable no-footer" data-order="[[ 2, &quot;desc&quot; ]]" data-page-length="100" role="grid" aria-describedby="allCreatorsTable_info" style="width: 1074px;">
+								<thead>
+									<tr role="row"><th class="sorting" tabindex="0" aria-controls="allCreatorsTable" rowspan="1" colspan="1" style="width: 23px;" aria-label="#: activate to sort column ascending">#</th><th class="sorting" tabindex="0" aria-controls="allCreatorsTable" rowspan="1" colspan="1" style="width: 289px;" aria-label="Creator: activate to sort column ascending">Creator</th><th class="sorting_desc" tabindex="0" aria-controls="allCreatorsTable" rowspan="1" colspan="1" style="width: 54px;" aria-label="Patrons: activate to sort column ascending" aria-sort="descending">Patrons</th><th class="sorting" tabindex="0" aria-controls="allCreatorsTable" rowspan="1" colspan="1" style="width: 175px;" aria-label="Earnings: activate to sort column ascending">Earnings</th><th class="sorting" tabindex="0" aria-controls="allCreatorsTable" rowspan="1" colspan="1" style="width: 132px;" aria-label="Per patron: activate to sort column ascending">Per patron</th><th class="sorting" tabindex="0" aria-controls="allCreatorsTable" rowspan="1" colspan="1" style="width: 67px;" aria-label="Days Running: activate to sort column ascending">Days Running</th><th class="sorting" tabindex="0" aria-controls="allCreatorsTable" rowspan="1" colspan="1" style="width: 69px;" aria-label="Launched: activate to sort column ascending">Launched</th></tr>
+								</thead>
+							<tbody><tr role="row" class="odd"><td><span class="number">101</span></td><td><a href="https://graphtreon.com/creator/nixelpixel"><span class="creatorName">nixelpixel</span> is creating видео и активизм! (nixelpixel)</a></td><td class="sorting_1"><span class="number">185</span></td><td><span class="number">$888</span> per month</td><td><span class="number">$4.80</span> per month</td><td><span class="number">772</span></td><td><span class="number">Aug 2017</span></td></tr><tr role="row" class="even"><td><span class="number">102</span></td><td><a href="https://graphtreon.com/creator/amybrownart"><span class="creatorName">Amy Brown Art</span> is creating art - watercolor paintings (amybrownart)</a></td><td class="sorting_1"><span class="number">182</span></td><td></td><td></td><td><span class="number">924</span></td><td><span class="number">Mar 2017</span></td></tr><tr role="row" class="odd"><td><span class="number">103</span></td><td><a href="https://graphtreon.com/creator/strangelykatie"><span class="creatorName">Katie</span> is creating Comics &amp; Illustrations (strangelykatie)</a></td><td class="sorting_1"><span class="number">181</span></td><td><span class="number">$744</span> per month</td><td><span class="number">$4.11</span> per month</td><td><span class="number">1465</span></td><td><span class="number">Sep 2015</span></td></tr><tr role="row" class="even"><td><span class="number">104</span></td><td><a href="https://graphtreon.com/creator/ghostandpals"><span class="creatorName">GHOST</span> is creating VOCALOID original songs and artwork (ghostandpals)</a></td><td class="sorting_1"><span class="number">181</span></td><td></td><td></td><td><span class="number">1273</span></td><td><span class="number">Apr 2016</span></td></tr><tr role="row" class="odd"><td><span class="number">105</span></td><td><a href="https://graphtreon.com/creator/koyorin"><span class="creatorName">Koyorin</span> is creating Illustrations and Characters (koyorin)</a></td><td class="sorting_1"><span class="number">178</span></td><td></td><td></td><td><span class="number">1156</span></td><td><span class="number">Aug 2016</span></td></tr><tr role="row" class="even"><td><span class="number">106</span></td><td><a href="https://graphtreon.com/creator/naomiromero"><span class="creatorName">Naomi Romero</span> is creating illustrations and merchandise (naomiromero)</a></td><td class="sorting_1"><span class="number">178</span></td><td><span class="number">$1,774</span> per month</td><td><span class="number">$9.97</span> per month</td><td><span class="number">793</span></td><td><span class="number">Jul 2017</span></td></tr><tr role="row" class="odd"><td><span class="number">107</span></td><td><a href="https://graphtreon.com/creator/chuwenjie"><span class="creatorName">Kat Tsai</span> is creating digital illustrations (chuwenjie)</a></td><td class="sorting_1"><span class="number">177</span></td><td></td><td></td><td><span class="number">428</span></td><td><span class="number">Jul 2018</span></td></tr><tr role="row" class="even"><td><span class="number">108</span></td><td><a href="https://graphtreon.com/creator/milbysmaps"><span class="creatorName">Milby's Maps</span> is creating Hand-Drawn Fantasy Cartography (milbysmaps)</a></td><td class="sorting_1"><span class="number">177</span></td><td><span class="number">$985</span> per month</td><td><span class="number">$5.57</span> per month</td><td><span class="number">377</span></td><td><span class="number">Sep 2018</span></td></tr><tr role="row" class="odd"><td><span class="number">109</span></td><td><a href="https://graphtreon.com/creator/JamesWappel"><span class="creatorName">James Wappel</span> is creating tutorials for painting miniatures and terrain (JamesWappel)</a></td><td class="sorting_1"><span class="number">174</span></td><td><span class="number">$1,904</span> per month</td><td><span class="number">$10.95</span> per month</td><td><span class="number">696</span></td><td><span class="number">Nov 2017</span></td></tr><tr role="row" class="even"><td><span class="number">110</span></td><td><a href="https://graphtreon.com/creator/CharacterDesignChallenge"><span class="creatorName">Character Design References</span> is creating the Character Design Challenge! (CharacterDesignChallenge)</a></td><td class="sorting_1"><span class="number">172</span></td><td></td><td></td><td><span class="number">1063</span></td><td><span class="number">Nov 2016</span></td></tr><tr role="row" class="odd"><td><span class="number">111</span></td><td><a href="https://graphtreon.com/creator/marcellobarenghi"><span class="creatorName">Marcello Barenghi</span> is creating drawing videos and tutorials (marcellobarenghi)</a></td><td class="sorting_1"><span class="number">169</span></td><td><span class="number">$1,449</span> per month</td><td><span class="number">$8.57</span> per month</td><td><span class="number">1447</span></td><td><span class="number">Oct 2015</span></td></tr><tr role="row" class="even"><td><span class="number">112</span></td><td><a href="https://graphtreon.com/creator/KnutAndreVikshaland"><span class="creatorName">Artist and Painter Knut Andre Vikshåland</span> is creating Art Oil Paintings and Oil painting lesson Videos on Youtube  (KnutAndreVikshaland)</a></td><td class="sorting_1"><span class="number">168</span></td><td></td><td></td><td><span class="number">1199</span></td><td><span class="number">Jun 2016</span></td></tr><tr role="row" class="odd"><td><span class="number">113</span></td><td><a href="https://graphtreon.com/creator/samdarcy"><span class="creatorName">Samantha Darcy</span> is creating the Adventurer’s Fashion Primer (samdarcy)</a></td><td class="sorting_1"><span class="number">168</span></td><td></td><td></td><td><span class="number">617</span></td><td><span class="number">Jan 2018</span></td></tr><tr role="row" class="even"><td><span class="number">114</span></td><td><a href="https://graphtreon.com/creator/astrilohne"><span class="creatorName">Astri Lohne</span> is creating Illustrations and Tutorials (astrilohne)</a></td><td class="sorting_1"><span class="number">167</span></td><td><span class="number">$997</span> per Illustration Box (usually 1 per month)</td><td><span class="number">$5.97</span> per Illustration Box (usually 1 per month)</td><td><span class="number">294</span></td><td><span class="number">Dec 2018</span></td></tr><tr role="row" class="odd"><td><span class="number">115</span></td><td><a href="https://graphtreon.com/creator/KrenzCushart"><span class="creatorName">Krenz</span> is creating art tutorial,Illustration,fanart (KrenzCushart)</a></td><td class="sorting_1"><span class="number">164</span></td><td><span class="number">$1,326</span> per Tutorial</td><td><span class="number">$8.08</span> per Tutorial</td><td><span class="number">1413</span></td><td><span class="number">Nov 2015</span></td></tr><tr role="row" class="even"><td><span class="number">116</span></td><td><a href="https://graphtreon.com/creator/margaretmoralesart"><span class="creatorName">Margaret Morales</span> is creating watercolor paintings and drawings (margaretmoralesart)</a></td><td class="sorting_1"><span class="number">162</span></td><td></td><td></td><td><span class="number">1061</span></td><td><span class="number">Nov 2016</span></td></tr><tr role="row" class="odd"><td><span class="number">117</span></td><td><a href="https://graphtreon.com/creator/tenhun"><span class="creatorName">Ten Hundred</span> is creating Murals, Paintings, Clothing and Design (tenhun)</a></td><td class="sorting_1"><span class="number">160</span></td><td><span class="number">$1,455</span> per month</td><td><span class="number">$9.09</span> per month</td><td><span class="number">462</span></td><td><span class="number">Jun 2018</span></td></tr><tr role="row" class="even"><td><span class="number">118</span></td><td><a href="https://graphtreon.com/creator/bjennymontero"><span class="creatorName">Bjenny Montero</span> is creating Artwork (bjennymontero)</a></td><td class="sorting_1"><span class="number">159</span></td><td></td><td></td><td><span class="number">226</span></td><td><span class="number">Feb 2019</span></td></tr><tr role="row" class="odd"><td><span class="number">119</span></td><td><a href="https://graphtreon.com/creator/ellievsbear"><span class="creatorName">ellie vs bear</span> is creating illustrations and art tutorials (ellievsbear)</a></td><td class="sorting_1"><span class="number">159</span></td><td><span class="number">$1,270</span> per month</td><td><span class="number">$7.99</span> per month</td><td><span class="number">150</span></td><td><span class="number">May 2019</span></td></tr><tr role="row" class="even"><td><span class="number">120</span></td><td><a href="https://graphtreon.com/creator/guweiz"><span class="creatorName">GUWEIZ</span> is creating Digital Illustrations, Processes &amp; Tutorials (guweiz)</a></td><td class="sorting_1"><span class="number">158</span></td><td><span class="number">$1,801</span> per Monthly Content</td><td><span class="number">$11.40</span> per Monthly Content</td><td><span class="number">1392</span></td><td><span class="number">Dec 2015</span></td></tr><tr role="row" class="odd"><td><span class="number">121</span></td><td><a href="https://graphtreon.com/creator/frenone"><span class="creatorName">Frenone</span> is creating Illustrations, Pins &amp; Playing Cards (frenone)</a></td><td class="sorting_1"><span class="number">157</span></td><td></td><td></td><td><span class="number">1340</span></td><td><span class="number">Jan 2016</span></td></tr><tr role="row" class="even"><td><span class="number">122</span></td><td><a href="https://graphtreon.com/creator/sau_siege"><span class="creatorName">SAU-SIEGE</span> is creating pretty gaming Illustrations, Videos &amp; Animations (sau_siege)</a></td><td class="sorting_1"><span class="number">156</span></td><td></td><td></td><td><span class="number">172</span></td><td><span class="number">Apr 2019</span></td></tr><tr role="row" class="odd"><td><span class="number">123</span></td><td><a href="https://graphtreon.com/creator/honerocheir"><span class="creatorName">Caroline Henkelius</span> is creating products in wool - from our own mill in Sweden  (honerocheir)</a></td><td class="sorting_1"><span class="number">155</span></td><td></td><td></td><td><span class="number">695</span></td><td><span class="number">Nov 2017</span></td></tr><tr role="row" class="even"><td><span class="number">124</span></td><td><a href="https://graphtreon.com/creator/ana_godis"><span class="creatorName">Ana Godis</span> is creating illustrations  (ana_godis)</a></td><td class="sorting_1"><span class="number">154</span></td><td></td><td></td><td><span class="number">605</span></td><td><span class="number">Feb 2018</span></td></tr><tr role="row" class="odd"><td><span class="number">125</span></td><td><a href="https://graphtreon.com/creator/user?u=645444"><span class="creatorName">$1 Adventure Frameworks</span> is creating RPG Mini Adventures &amp; Side Treks</a></td><td class="sorting_1"><span class="number">154</span></td><td><span class="number">$185</span> per creation</td><td><span class="number">$1.20</span> per creation</td><td><span class="number">1113</span></td><td><span class="number">Sep 2016</span></td></tr><tr role="row" class="even"><td><span class="number">126</span></td><td><a href="https://graphtreon.com/creator/kipandkel"><span class="creatorName">Kip and Kel</span> is creating art (kipandkel)</a></td><td class="sorting_1"><span class="number">154</span></td><td></td><td></td><td><span class="number">470</span></td><td><span class="number">Jun 2018</span></td></tr><tr role="row" class="odd"><td><span class="number">127</span></td><td><a href="https://graphtreon.com/creator/lovesoup"><span class="creatorName">LOVESOUP</span> is creating illustration, enamel pins &amp; other creations (lovesoup)</a></td><td class="sorting_1"><span class="number">146</span></td><td></td><td></td><td><span class="number">444</span></td><td><span class="number">Jul 2018</span></td></tr><tr role="row" class="even"><td><span class="number">128</span></td><td><a href="https://graphtreon.com/creator/salaisefigurinestudio"><span class="creatorName">Salaise Figurine Studio</span> is creating Miniature painting (salaisefigurinestudio)</a></td><td class="sorting_1"><span class="number">146</span></td><td></td><td></td><td><span class="number">920</span></td><td><span class="number">Mar 2017</span></td></tr><tr role="row" class="odd"><td><span class="number">129</span></td><td><a href="https://graphtreon.com/creator/DarrenCarnall"><span class="creatorName">Darren Carnall</span> is creating miniature painting video tutorials, custom figures and statues (DarrenCarnall)</a></td><td class="sorting_1"><span class="number">146</span></td><td><span class="number">$712</span> per month</td><td><span class="number">$4.87</span> per month</td><td><span class="number">1539</span></td><td><span class="number">Jul 2015</span></td></tr><tr role="row" class="even"><td><span class="number">130</span></td><td><a href="https://graphtreon.com/creator/fleacircusdesigns"><span class="creatorName">Ash</span> is creating a monthly Poe Egglesworth pin club (fleacircusdesigns)</a></td><td class="sorting_1"><span class="number">144</span></td><td></td><td></td><td><span class="number">219</span></td><td><span class="number">Feb 2019</span></td></tr><tr role="row" class="odd"><td><span class="number">131</span></td><td><a href="https://graphtreon.com/creator/marcobucci"><span class="creatorName">Marco Bucci</span> is creating painting tutorials for artists of all levels (marcobucci)</a></td><td class="sorting_1"><span class="number">142</span></td><td><span class="number">$833</span> per creation</td><td><span class="number">$5.87</span> per creation</td><td><span class="number">838</span></td><td><span class="number">Jun 2017</span></td></tr><tr role="row" class="even"><td><span class="number">132</span></td><td><a href="https://graphtreon.com/creator/tinyplant"><span class="creatorName">Tiny Plant</span> is creating a cute sticker club! (tinyplant)</a></td><td class="sorting_1"><span class="number">141</span></td><td></td><td></td><td><span class="number">216</span></td><td><span class="number">Feb 2019</span></td></tr><tr role="row" class="odd"><td><span class="number">133</span></td><td><a href="https://graphtreon.com/creator/heatherrooney"><span class="creatorName">Heather Rooney</span> is creating Photorealistic Drawings  &amp; Drawing Videos (heatherrooney)</a></td><td class="sorting_1"><span class="number">141</span></td><td></td><td></td><td><span class="number">732</span></td><td><span class="number">Sep 2017</span></td></tr><tr role="row" class="even"><td><span class="number">134</span></td><td><a href="https://graphtreon.com/creator/sexytuna"><span class="creatorName">Joy San</span> is creating A Graphic Novel &amp; Illustrations (sexytuna)</a></td><td class="sorting_1"><span class="number">141</span></td><td></td><td></td><td><span class="number">1366</span></td><td><span class="number">Jan 2016</span></td></tr><tr role="row" class="odd"><td><span class="number">135</span></td><td><a href="https://graphtreon.com/creator/v03"><span class="creatorName">V-0-3</span> is creating Paper Roses and Illustrations (v03)</a></td><td class="sorting_1"><span class="number">140</span></td><td></td><td></td><td><span class="number">1215</span></td><td><span class="number">Jun 2016</span></td></tr><tr role="row" class="even"><td><span class="number">136</span></td><td><a href="https://graphtreon.com/creator/roryblank"><span class="creatorName">Rory Blank</span> is creating Drawing pictures of goblins or sad people or something (roryblank)</a></td><td class="sorting_1"><span class="number">139</span></td><td><span class="number">$726</span> per month</td><td><span class="number">$5.22</span> per month</td><td><span class="number">736</span></td><td><span class="number">Sep 2017</span></td></tr><tr role="row" class="odd"><td><span class="number">137</span></td><td><a href="https://graphtreon.com/creator/tanyashatseva"><span class="creatorName">Tanya Shatseva</span> is creating psychedelic art, surreal acrylic and mixed media paintings (tanyashatseva)</a></td><td class="sorting_1"><span class="number">139</span></td><td></td><td></td><td><span class="number">987</span></td><td><span class="number">Jan 2017</span></td></tr><tr role="row" class="even"><td><span class="number">138</span></td><td><a href="https://graphtreon.com/creator/WhiteCloudPavilion"><span class="creatorName">White Cloud Pavilion</span> is creating Kickass scheduled manhua scanlation for series you love to read (WhiteCloudPavilion)</a></td><td class="sorting_1"><span class="number">138</span></td><td></td><td></td><td><span class="number">1163</span></td><td><span class="number">Jul 2016</span></td></tr><tr role="row" class="odd"><td><span class="number">139</span></td><td><a href="https://graphtreon.com/creator/chrisryniak"><span class="creatorName">Chris Ryniak</span> is creating Friendly Monster Drawings! (chrisryniak)</a></td><td class="sorting_1"><span class="number">137</span></td><td></td><td></td><td><span class="number">1963</span></td><td><span class="number">May 2014</span></td></tr><tr role="row" class="even"><td><span class="number">140</span></td><td><a href="https://graphtreon.com/creator/danielsmaps"><span class="creatorName">Daniel's Maps</span> is creating fantasy and RPG maps (danielsmaps)</a></td><td class="sorting_1"><span class="number">136</span></td><td><span class="number">$273</span> per map</td><td><span class="number">$2.00</span> per map</td><td><span class="number">303</span></td><td><span class="number">Dec 2018</span></td></tr><tr role="row" class="odd"><td><span class="number">141</span></td><td><a href="https://graphtreon.com/creator/iconfactory"><span class="creatorName">The Iconfactory</span> is creating wallpapers, icons &amp; digital goodies! (iconfactory)</a></td><td class="sorting_1"><span class="number">136</span></td><td></td><td></td><td><span class="number">220</span></td><td><span class="number">Feb 2019</span></td></tr><tr role="row" class="even"><td><span class="number">142</span></td><td><a href="https://graphtreon.com/creator/genbrush"><span class="creatorName">Mavichist</span> is creating GenBrush; map painting and rendering software for world builders (genbrush)</a></td><td class="sorting_1"><span class="number">136</span></td><td><span class="number">$431</span> per month</td><td><span class="number">$3.17</span> per month</td><td><span class="number">201</span></td><td><span class="number">Mar 2019</span></td></tr><tr role="row" class="odd"><td><span class="number">143</span></td><td><a href="https://graphtreon.com/creator/shaylamaddox"><span class="creatorName">Shayla Maddox</span> is creating Circles • Water • Light (shaylamaddox)</a></td><td class="sorting_1"><span class="number">134</span></td><td></td><td></td><td><span class="number">2151</span></td><td><span class="number">Nov 2013</span></td></tr><tr role="row" class="even"><td><span class="number">144</span></td><td><a href="https://graphtreon.com/creator/Corneliahernesartwork"><span class="creatorName">Cornelia Hernes Artwork</span> is creating Portrait Painting Videos (Corneliahernesartwork)</a></td><td class="sorting_1"><span class="number">134</span></td><td></td><td></td><td><span class="number">380</span></td><td><span class="number">Sep 2018</span></td></tr><tr role="row" class="odd"><td><span class="number">145</span></td><td><a href="https://graphtreon.com/creator/bwusagi"><span class="creatorName">BWusagi</span> is creating Original Characters, illustration and concept  (bwusagi)</a></td><td class="sorting_1"><span class="number">133</span></td><td></td><td></td><td><span class="number">1378</span></td><td><span class="number">Dec 2015</span></td></tr><tr role="row" class="even"><td><span class="number">146</span></td><td><a href="https://graphtreon.com/creator/elentori"><span class="creatorName">Elentori</span> is creating Illustrations and Tutorials (elentori)</a></td><td class="sorting_1"><span class="number">133</span></td><td></td><td></td><td><span class="number">1044</span></td><td><span class="number">Nov 2016</span></td></tr><tr role="row" class="odd"><td><span class="number">147</span></td><td><a href="https://graphtreon.com/creator/12_stephieclark"><span class="creatorName">Stephie Clark</span> is creating Soft pastel art (12_stephieclark)</a></td><td class="sorting_1"><span class="number">132</span></td><td></td><td></td><td><span class="number">277</span></td><td><span class="number">Dec 2018</span></td></tr><tr role="row" class="even"><td><span class="number">148</span></td><td><a href="https://graphtreon.com/creator/Whalephat"><span class="creatorName">Whalephat</span> is creating Monthly Enamel Pin Club, Illustrations and Art (Whalephat)</a></td><td class="sorting_1"><span class="number">132</span></td><td></td><td></td><td><span class="number">493</span></td><td><span class="number">May 2018</span></td></tr><tr role="row" class="odd"><td><span class="number">149</span></td><td><a href="https://graphtreon.com/creator/noflutter"><span class="creatorName">NoFlutter</span> is creating Concept Art and Pinup Design Illustrations  (noflutter)</a></td><td class="sorting_1"><span class="number">132</span></td><td><span class="number">$550</span> per month</td><td><span class="number">$4.16</span> per month</td><td><span class="number">1432</span></td><td><span class="number">Oct 2015</span></td></tr><tr role="row" class="even"><td><span class="number">150</span></td><td><a href="https://graphtreon.com/creator/marrusart"><span class="creatorName">Marrus</span> is creating Fantastical, metaphorical fine art for the smart! (marrusart)</a></td><td class="sorting_1"><span class="number">131</span></td><td></td><td></td><td><span class="number">1452</span></td><td><span class="number">Oct 2015</span></td></tr><tr role="row" class="odd"><td><span class="number">151</span></td><td><a href="https://graphtreon.com/creator/AmieHowardArt"><span class="creatorName">Amie Howard Art</span> is creating Coloured Pencil Tutorials and Techniques (AmieHowardArt)</a></td><td class="sorting_1"><span class="number">131</span></td><td><span class="number">$1,160</span> per month</td><td><span class="number">$8.86</span> per month</td><td><span class="number">1444</span></td><td><span class="number">Oct 2015</span></td></tr><tr role="row" class="even"><td><span class="number">152</span></td><td><a href="https://graphtreon.com/creator/satoshi_matsuura"><span class="creatorName">Satoshi Matsuura</span> is creating creature and character design. (satoshi_matsuura)</a></td><td class="sorting_1"><span class="number">130</span></td><td><span class="number">$258</span> per month</td><td><span class="number">$1.99</span> per month</td><td><span class="number">773</span></td><td><span class="number">Aug 2017</span></td></tr><tr role="row" class="odd"><td><span class="number">153</span></td><td><a href="https://graphtreon.com/creator/daltondoodles"><span class="creatorName">Dalton Stark</span> is creating doodles and stickers (daltondoodles)</a></td><td class="sorting_1"><span class="number">129</span></td><td><span class="number">$953</span> per month</td><td><span class="number">$7.38</span> per month</td><td><span class="number">377</span></td><td><span class="number">Sep 2018</span></td></tr><tr role="row" class="even"><td><span class="number">154</span></td><td><a href="https://graphtreon.com/creator/Yencat"><span class="creatorName">Yencat</span> is creating Merchandise &amp; Illustration (Yencat)</a></td><td class="sorting_1"><span class="number">128</span></td><td></td><td></td><td><span class="number">213</span></td><td><span class="number">Mar 2019</span></td></tr><tr role="row" class="odd"><td><span class="number">155</span></td><td><a href="https://graphtreon.com/creator/terratoff"><span class="creatorName">Heather R. Hitchman</span> is creating A world called "Terratoff" (terratoff)</a></td><td class="sorting_1"><span class="number">127</span></td><td><span class="number">$1,015</span> per month</td><td><span class="number">$7.99</span> per month</td><td><span class="number">839</span></td><td><span class="number">Jun 2017</span></td></tr><tr role="row" class="even"><td><span class="number">156</span></td><td><a href="https://graphtreon.com/creator/SurlyAmy"><span class="creatorName">Amy Davis Roth</span> is creating Multimedia art projects inspired by science and nature. (SurlyAmy)</a></td><td class="sorting_1"><span class="number">127</span></td><td></td><td></td><td><span class="number">1654</span></td><td><span class="number">Mar 2015</span></td></tr><tr role="row" class="odd"><td><span class="number">157</span></td><td><a href="https://graphtreon.com/creator/alarmeighteen"><span class="creatorName">Alarm Eighteen</span> is creating Books &amp; Artwork. (alarmeighteen)</a></td><td class="sorting_1"><span class="number">126</span></td><td></td><td></td><td><span class="number">253</span></td><td><span class="number">Jan 2019</span></td></tr><tr role="row" class="even"><td><span class="number">158</span></td><td><a href="https://graphtreon.com/creator/aaronmiller"><span class="creatorName">Aaron Miller</span> is creating Collector Tokens (aaronmiller)</a></td><td class="sorting_1"><span class="number">125</span></td><td><span class="number">$1,146</span> per creation</td><td><span class="number">$9.16</span> per creation</td><td><span class="number">965</span></td><td><span class="number">Feb 2017</span></td></tr><tr role="row" class="odd"><td><span class="number">159</span></td><td><a href="https://graphtreon.com/creator/kristaleighsmith"><span class="creatorName">Krista Leigh Smith</span> is creating Art and Characters (kristaleighsmith)</a></td><td class="sorting_1"><span class="number">125</span></td><td></td><td></td><td><span class="number">439</span></td><td><span class="number">Jul 2018</span></td></tr><tr role="row" class="even"><td><span class="number">160</span></td><td><a href="https://graphtreon.com/creator/lopoddity"><span class="creatorName">Lopoddity</span> is creating Illustrations and Doodles (lopoddity)</a></td><td class="sorting_1"><span class="number">124</span></td><td><span class="number">$820</span> per month</td><td><span class="number">$6.62</span> per month</td><td><span class="number">447</span></td><td><span class="number">Jul 2018</span></td></tr><tr role="row" class="odd"><td><span class="number">161</span></td><td><a href="https://graphtreon.com/creator/sylessae"><span class="creatorName">Sylessae</span> is creating digital artwork and livestreaming! (sylessae)</a></td><td class="sorting_1"><span class="number">122</span></td><td></td><td></td><td><span class="number">1012</span></td><td><span class="number">Dec 2016</span></td></tr><tr role="row" class="even"><td><span class="number">162</span></td><td><a href="https://graphtreon.com/creator/borodante"><span class="creatorName">Borodante</span> is creating digital paintings (borodante)</a></td><td class="sorting_1"><span class="number">122</span></td><td><span class="number">$327</span> per month</td><td><span class="number">$2.68</span> per month</td><td><span class="number">1333</span></td><td><span class="number">Feb 2016</span></td></tr><tr role="row" class="odd"><td><span class="number">163</span></td><td><a href="https://graphtreon.com/creator/Baerthe"><span class="creatorName">Baerthe</span> is creating MTG Tokens (Baerthe)</a></td><td class="sorting_1"><span class="number">121</span></td><td></td><td></td><td><span class="number">430</span></td><td><span class="number">Jul 2018</span></td></tr><tr role="row" class="even"><td><span class="number">164</span></td><td><a href="https://graphtreon.com/creator/successfulstocker"><span class="creatorName">Olga Zakharova</span> is creating stock illustrations (successfulstocker)</a></td><td class="sorting_1"><span class="number">121</span></td><td><span class="number">$373</span> per month</td><td><span class="number">$3.09</span> per month</td><td><span class="number">246</span></td><td><span class="number">Jan 2019</span></td></tr><tr role="row" class="odd"><td><span class="number">165</span></td><td><a href="https://graphtreon.com/creator/osarusan"><span class="creatorName">Matthew Meyer</span> is creating yokai (osarusan)</a></td><td class="sorting_1"><span class="number">120</span></td><td><span class="number">$747</span> per month</td><td><span class="number">$6.22</span> per month</td><td><span class="number">1504</span></td><td><span class="number">Aug 2015</span></td></tr><tr role="row" class="even"><td><span class="number">166</span></td><td><a href="https://graphtreon.com/creator/rblemberg"><span class="creatorName">Rose Lemberg</span> is creating BIRDVERSE (rblemberg)</a></td><td class="sorting_1"><span class="number">120</span></td><td></td><td></td><td><span class="number">1728</span></td><td><span class="number">Jan 2015</span></td></tr><tr role="row" class="odd"><td><span class="number">167</span></td><td><a href="https://graphtreon.com/creator/hannah515"><span class="creatorName">Hannah515</span> is creating Illustrations (hannah515)</a></td><td class="sorting_1"><span class="number">119</span></td><td><span class="number">$146</span> per month</td><td><span class="number">$1.23</span> per month</td><td><span class="number">502</span></td><td><span class="number">May 2018</span></td></tr><tr role="row" class="even"><td><span class="number">168</span></td><td><a href="https://graphtreon.com/creator/jamesperrett"><span class="creatorName">James Perrett</span> is creating D&amp;D items and weapons! (jamesperrett)</a></td><td class="sorting_1"><span class="number">119</span></td><td><span class="number">$322</span> per month</td><td><span class="number">$2.70</span> per month</td><td><span class="number">250</span></td><td><span class="number">Jan 2019</span></td></tr><tr role="row" class="odd"><td><span class="number">169</span></td><td><a href="https://graphtreon.com/creator/spielebude"><span class="creatorName">Spielebude</span> is creating Battle Reports &amp; Painting Tutorials (spielebude)</a></td><td class="sorting_1"><span class="number">118</span></td><td></td><td></td><td><span class="number">880</span></td><td><span class="number">May 2017</span></td></tr><tr role="row" class="even"><td><span class="number">170</span></td><td><a href="https://graphtreon.com/creator/sybileart"><span class="creatorName">Sybile Art</span> is creating Magical Paintings, Drawings &amp; Pins (sybileart)</a></td><td class="sorting_1"><span class="number">118</span></td><td></td><td></td><td><span class="number">979</span></td><td><span class="number">Jan 2017</span></td></tr><tr role="row" class="odd"><td><span class="number">171</span></td><td><a href="https://graphtreon.com/creator/journeytowellness"><span class="creatorName">Journey to Wellness</span> is creating Cartoons &amp; Illustrations about Mental Health &amp; Wellbeing (journeytowellness)</a></td><td class="sorting_1"><span class="number">117</span></td><td><span class="number">$291</span> per month</td><td><span class="number">$2.49</span> per month</td><td><span class="number">429</span></td><td><span class="number">Jul 2018</span></td></tr><tr role="row" class="even"><td><span class="number">172</span></td><td><a href="https://graphtreon.com/creator/jelarts"><span class="creatorName">JelArts</span> is creating Illustrations (jelarts)</a></td><td class="sorting_1"><span class="number">117</span></td><td><span class="number">$1,214</span> per month</td><td><span class="number">$10.38</span> per month</td><td><span class="number">177</span></td><td><span class="number">Apr 2019</span></td></tr><tr role="row" class="odd"><td><span class="number">173</span></td><td><a href="https://graphtreon.com/creator/effywild"><span class="creatorName">Effy Bird Wild</span> is creating a temple dedicated to your inner artist! (effywild)</a></td><td class="sorting_1"><span class="number">116</span></td><td></td><td></td><td><span class="number">720</span></td><td><span class="number">Oct 2017</span></td></tr><tr role="row" class="even"><td><span class="number">174</span></td><td><a href="https://graphtreon.com/creator/middleearthpaintingguides"><span class="creatorName">Dead Marsh Spectre</span> is creating Middle-earth Painting guides (middleearthpaintingguides)</a></td><td class="sorting_1"><span class="number">116</span></td><td></td><td></td><td><span class="number">386</span></td><td><span class="number">Sep 2018</span></td></tr><tr role="row" class="odd"><td><span class="number">175</span></td><td><a href="https://graphtreon.com/creator/apofiss"><span class="creatorName">apofiss</span> is creating digital paintings, wallpapers and more! (apofiss)</a></td><td class="sorting_1"><span class="number">115</span></td><td></td><td></td><td><span class="number">1395</span></td><td><span class="number">Dec 2015</span></td></tr><tr role="row" class="even"><td><span class="number">176</span></td><td><a href="https://graphtreon.com/creator/cyanparade"><span class="creatorName">kiDChan</span> is creating IIllustrations (cyanparade)</a></td><td class="sorting_1"><span class="number">113</span></td><td></td><td></td><td><span class="number">1699</span></td><td><span class="number">Feb 2015</span></td></tr><tr role="row" class="odd"><td><span class="number">177</span></td><td><a href="https://graphtreon.com/creator/rakkuguy"><span class="creatorName">RakkuGuy</span> is creating Drawings and Comics (rakkuguy)</a></td><td class="sorting_1"><span class="number">112</span></td><td><span class="number">$410</span> per month</td><td><span class="number">$3.66</span> per month</td><td><span class="number">1671</span></td><td><span class="number">Mar 2015</span></td></tr><tr role="row" class="even"><td><span class="number">178</span></td><td><a href="https://graphtreon.com/creator/zachfischerart"><span class="creatorName">Zach Fischer</span> is creating Custom Cosplay and illustrations (zachfischerart)</a></td><td class="sorting_1"><span class="number">112</span></td><td></td><td></td><td><span class="number">1690</span></td><td><span class="number">Feb 2015</span></td></tr><tr role="row" class="odd"><td><span class="number">179</span></td><td><a href="https://graphtreon.com/creator/owlkeyme"><span class="creatorName">Laura Tempest Zakroff</span> is creating Visual Alchemy (owlkeyme)</a></td><td class="sorting_1"><span class="number">112</span></td><td><span class="number">$552</span> per month</td><td><span class="number">$4.93</span> per month</td><td><span class="number">1404</span></td><td><span class="number">Nov 2015</span></td></tr><tr role="row" class="even"><td><span class="number">180</span></td><td><a href="https://graphtreon.com/creator/yiq"><span class="creatorName">fray</span> is creating character designs and art (yiq)</a></td><td class="sorting_1"><span class="number">111</span></td><td><span class="number">$285</span> per month</td><td><span class="number">$2.56</span> per month</td><td><span class="number">1937</span></td><td><span class="number">Jun 2014</span></td></tr><tr role="row" class="odd"><td><span class="number">181</span></td><td><a href="https://graphtreon.com/creator/Dim69"><span class="creatorName">Dimitri-Dim69</span> is creating Peinture et soclage de figurines / Miniatures Painting &amp; Basing (Dim69)</a></td><td class="sorting_1"><span class="number">110</span></td><td><span class="number">$859</span> per month</td><td><span class="number">$7.81</span> per month</td><td><span class="number">295</span></td><td><span class="number">Dec 2018</span></td></tr><tr role="row" class="even"><td><span class="number">182</span></td><td><a href="https://graphtreon.com/creator/deanspencerart"><span class="creatorName">Dean Spencer</span> is creating Fantasy &amp; Sci-Fi RPG Stock Art - Characters, Creatures, Items (deanspencerart)</a></td><td class="sorting_1"><span class="number">109</span></td><td><span class="number">$1,067</span> per month</td><td><span class="number">$9.79</span> per month</td><td><span class="number">1681</span></td><td><span class="number">Feb 2015</span></td></tr><tr role="row" class="odd"><td><span class="number">183</span></td><td><a href="https://graphtreon.com/creator/BluDraygn"><span class="creatorName">BluDraygn</span> is creating Erotic Literature (BluDraygn)</a></td><td class="sorting_1"><span class="number">109</span></td><td><span class="number">$299</span> per month</td><td><span class="number">$2.74</span> per month</td><td><span class="number">321</span></td><td><span class="number">Nov 2018</span></td></tr><tr role="row" class="even"><td><span class="number">184</span></td><td><a href="https://graphtreon.com/creator/howardlyonart"><span class="creatorName">Howard Lyon</span> is creating Art and Painting Videos (howardlyonart)</a></td><td class="sorting_1"><span class="number">107</span></td><td></td><td></td><td><span class="number">248</span></td><td><span class="number">Jan 2019</span></td></tr><tr role="row" class="odd"><td><span class="number">185</span></td><td><a href="https://graphtreon.com/creator/randy_m"><span class="creatorName">Randy M</span> is creating Fantasy Maps and Illustrations (randy_m)</a></td><td class="sorting_1"><span class="number">106</span></td><td><span class="number">$350</span> per month</td><td><span class="number">$3.30</span> per month</td><td><span class="number">1099</span></td><td><span class="number">Sep 2016</span></td></tr><tr role="row" class="even"><td><span class="number">186</span></td><td><a href="https://graphtreon.com/creator/arielburgess"><span class="creatorName">Ariel Burgess</span> is creating Paintings (arielburgess)</a></td><td class="sorting_1"><span class="number">106</span></td><td></td><td></td><td><span class="number">1074</span></td><td><span class="number">Oct 2016</span></td></tr><tr role="row" class="odd"><td><span class="number">187</span></td><td><a href="https://graphtreon.com/creator/mammamiu"><span class="creatorName">Miu Mau</span> is creating illustrations and books and trying to train her brain (mammamiu)</a></td><td class="sorting_1"><span class="number">106</span></td><td></td><td></td><td><span class="number">174</span></td><td><span class="number">Apr 2019</span></td></tr><tr role="row" class="even"><td><span class="number">188</span></td><td><a href="https://graphtreon.com/creator/ikonographics"><span class="creatorName">Julia Hayes</span> is creating Iconography Tutorials (ikonographics)</a></td><td class="sorting_1"><span class="number">104</span></td><td></td><td></td><td><span class="number">762</span></td><td><span class="number">Aug 2017</span></td></tr><tr role="row" class="odd"><td><span class="number">189</span></td><td><a href="https://graphtreon.com/creator/cioccolatodorima"><span class="creatorName">Cioccolatodorima</span> is creating Illustrations and anime stuff (cioccolatodorima)</a></td><td class="sorting_1"><span class="number">102</span></td><td><span class="number">$318</span> per month</td><td><span class="number">$3.12</span> per month</td><td><span class="number">892</span></td><td><span class="number">Apr 2017</span></td></tr><tr role="row" class="even"><td><span class="number">190</span></td><td><a href="https://graphtreon.com/creator/minipete"><span class="creatorName">minipete</span> is creating Art (minipete)</a></td><td class="sorting_1"><span class="number">101</span></td><td><span class="number">$257</span> per month</td><td><span class="number">$2.55</span> per month</td><td><span class="number">813</span></td><td><span class="number">Jul 2017</span></td></tr><tr role="row" class="odd"><td><span class="number">191</span></td><td><a href="https://graphtreon.com/creator/samflegal"><span class="creatorName">Sam Flegal</span> is creating Fateful Signs, an exploration of Viking Lore through Art (samflegal)</a></td><td class="sorting_1"><span class="number">100</span></td><td><span class="number">$421</span> per month</td><td><span class="number">$4.21</span> per month</td><td><span class="number">547</span></td><td><span class="number">Apr 2018</span></td></tr><tr role="row" class="even"><td><span class="number">192</span></td><td><a href="https://graphtreon.com/creator/pcaggegi"><span class="creatorName">Paul Caggegi</span> is creating Blender tutorials for illustrators (pcaggegi)</a></td><td class="sorting_1"><span class="number">100</span></td><td></td><td></td><td><span class="number">833</span></td><td><span class="number">Jun 2017</span></td></tr><tr role="row" class="odd"><td><span class="number">193</span></td><td><a href="https://graphtreon.com/creator/dadachyo"><span class="creatorName">DADACHYO</span> is creating Illustration (dadachyo)</a></td><td class="sorting_1"><span class="number">99</span></td><td></td><td></td><td><span class="number">518</span></td><td><span class="number">May 2018</span></td></tr><tr role="row" class="even"><td><span class="number">194</span></td><td><a href="https://graphtreon.com/creator/evwiii"><span class="creatorName">Ernest Vincent Wood III</span> is creating oil paintings and tutorial videos (evwiii)</a></td><td class="sorting_1"><span class="number">99</span></td><td></td><td></td><td><span class="number">760</span></td><td><span class="number">Sep 2017</span></td></tr><tr role="row" class="odd"><td><span class="number">195</span></td><td><a href="https://graphtreon.com/creator/everestpipkin"><span class="creatorName">Everest Pipkin</span> is creating occasional software, lines on paper (everestpipkin)</a></td><td class="sorting_1"><span class="number">97</span></td><td><span class="number">$451</span> per month</td><td><span class="number">$4.65</span> per month</td><td><span class="number">1488</span></td><td><span class="number">Sep 2015</span></td></tr><tr role="row" class="even"><td><span class="number">196</span></td><td><a href="https://graphtreon.com/creator/ctrlcreep"><span class="creatorName">ctrlcreep</span> is creating irregularities (ctrlcreep)</a></td><td class="sorting_1"><span class="number">96</span></td><td><span class="number">$477</span> per month</td><td><span class="number">$4.97</span> per month</td><td><span class="number">1425</span></td><td><span class="number">Nov 2015</span></td></tr><tr role="row" class="odd"><td><span class="number">197</span></td><td><a href="https://graphtreon.com/creator/aenamiart"><span class="creatorName">Aenami</span> is creating Art (aenamiart)</a></td><td class="sorting_1"><span class="number">96</span></td><td><span class="number">$298</span> per Creation</td><td><span class="number">$3.10</span> per Creation</td><td><span class="number">1317</span></td><td><span class="number">Feb 2016</span></td></tr><tr role="row" class="even"><td><span class="number">198</span></td><td><a href="https://graphtreon.com/creator/elorapautrat"><span class="creatorName">Elora Pautrat</span> is creating Digital Art (elorapautrat)</a></td><td class="sorting_1"><span class="number">96</span></td><td></td><td></td><td><span class="number">168</span></td><td><span class="number">Apr 2019</span></td></tr><tr role="row" class="odd"><td><span class="number">199</span></td><td><a href="https://graphtreon.com/creator/patronizer"><span class="creatorName">Patronizer</span> is creating tools for Creators (patronizer)</a></td><td class="sorting_1"><span class="number">96</span></td><td><span class="number">$365</span> per month</td><td><span class="number">$3.80</span> per month</td><td><span class="number">761</span></td><td><span class="number">Sep 2017</span></td></tr><tr role="row" class="even"><td><span class="number">200</span></td><td><a href="https://graphtreon.com/creator/artlair"><span class="creatorName">Jessica Feinberg</span> is creating dragons &amp; rare creatures! (artlair)</a></td><td class="sorting_1"><span class="number">96</span></td><td></td><td></td><td><span class="number">697</span></td><td><span class="number">Nov 2017</span></td></tr></tbody></table></div><div class="dataTables_info" id="allCreatorsTable_info" role="status" aria-live="polite">Showing 101 to 200 of 1,623 creators (filtered from 6,711 total entries)</div><div class="dataTables_paginate paging_input" id="allCreatorsTable_paginate" style=""><span class="previous paginate_button" id="allCreatorsTable_previous">Previous</span><span class="paginate_page">Page </span><input class="paginate_input" type="text" value="2"><span class="paginate_of"> of 17</span><span class="next paginate_button" id="allCreatorsTable_next">Next</span></div></div></div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-md-12 col-sm-12">
+					<div class="promobox">
+						Get instant stats for all the creators you support
+						<a href="https://graphtreon.com/login/patreon" class="btn-login-with-patreon">
+							Log in with Patreon
+						</a>
+					</div>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-sm-12">
+									</div>
+			</div>
+
+			<div class="row supporter-all-pages">
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+            <div class="tagline">
+                Graphtreon Supporter
+            </div>
+            <div class="supporter-card">
+                                    <a href="http://www.exiern.com/?utm_source=graphtreon&amp;utm_medium=referral">
+                        <img src="GraphtreonArtists101-200_files/Exiern484.jpg" width="100%">
+                    </a>
+                            </div>
+        </div>
+        <div class="col-md-4"></div>
+    </div>
+
+		</section><!-- /.content -->
+	</div><!-- /.container -->
+</div><!-- /.content-wrapper -->
+  </div>
+
+  <footer class="main-footer">
+    <div class="container">
+      <div class="container-fluid">
+        <div class="content">
+          <div class="row">
+            <div class="col-sm-4 col-xs-12">
+              <h4>Graphtreon LLC</h4>
+              <ul>
+                <li>
+                  <a href="https://www.patreon.com/bePatron?c=267852">Support Graphtreon</a>
+                </li>
+                <li>
+                  <a href="https://graphtreon.com/contact">Contact</a>
+                </li>
+                <li>
+                  <a href="https://graphtreon.com/about">About</a>
+                </li>
+                <li>
+                  <a href="https://graphtreon.com/privacy">Privacy Policy</a>
+                </li>
+                <li>
+                  <a href="https://graphtreon.com/terms">Terms of Service</a>
+                </li>
+              </ul>
+            </div>
+            <div class="col-sm-4 col-xs-12">
+              <h4>Quick Links</h4>
+              <ul>
+                <li>
+                  <a href="https://graphtreon.com/monthly-ranking">Monthly Ranking</a>
+                </li>
+                <li>
+                  <a href="https://graphtreon.com/hot-patreon-creators">Hot Patreon Campaigns</a>
+                </li>
+                <li>
+                  <a href="https://graphtreon.com/ended-patreon-campaigns">Ended Patreon Campaigns</a>
+                </li>
+                <li>
+                  <a href="https://graphtreon.com/sfw-supporters">SFW Supporters</a>
+                </li>
+                <li>
+                  <a href="https://graphtreon.com/nsfw-supporters">NSFW Supporters</a>
+                </li>
+                <li>
+                  <a href="https://graphtreon.com/kind-words">Kind Words</a>
+                </li>
+              </ul>
+            </div>
+            <div class="col-sm-4 col-xs-12">
+              <h4>Social</h4>
+              <ul>
+                <li>
+                  <a href="https://twitter.com/graphtreon">Twitter</a>
+                </li>
+                <li>
+                  <a href="http://www.reddit.com/r/graphtreon/">Reddit</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-12">
+                <a id="disclaimers"></a><h4><em>Best Guess</em> Disclaimer</h4>
+              <p>
+                  <strong>*</strong> Graphtreon's <em>Best Guess</em> 
+for unknown earnings is based on a creator's number of patrons, and the 
+earnings of similar creators that do publish earnings information.
+              </p>
+              <p>
+                More specifically: it's calculated by taking the average
+ earnings per patron in the same category, adding/subtracting the 
+standard deviation from that average to get both extremes, and 
+multiplying by the number of patrons. These estimated earnings are 
+calculated solely by Graphtreon. No actual earnings data for such 
+creators is provided or endorsed by Patreon.
+              </p>
+                <p>
+                    Creators may opt out of "Best Guess" by contacting Graphtreon using the <a href="https://graphtreon.com/contact">contact form</a>.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+    </div><!-- ./wrapper -->
+
+  <div class="loadingModal"></div>
+
+	<!-- Scripts -->
+	<script async="" src="GraphtreonArtists101-200_files/analytics.js"></script><script src="GraphtreonArtists101-200_files/jquery_002.js"></script>
+	<script src="GraphtreonArtists101-200_files/bootstrap.js"></script>
+  <script src="GraphtreonArtists101-200_files/app.js"></script>
+  <script src="GraphtreonArtists101-200_files/select2.js"></script>
+	<script src="GraphtreonArtists101-200_files/highstock6.js"></script>
+    <script src="GraphtreonArtists101-200_files/funnel6.js"></script>
+	<script src="GraphtreonArtists101-200_files/bootstrap-datepicker.js"></script>
+
+	<script src="GraphtreonArtists101-200_files/jquery.js"></script>
+<script src="GraphtreonArtists101-200_files/datatables-inputplugin.js"></script>
+<script>
+	Number.prototype.formatMoney = function(c, d, t){
+		var n = this, 
+		    c = isNaN(c = Math.abs(c)) ? 2 : c, 
+		    d = d == undefined ? "." : d, 
+		    t = t == undefined ? "," : t, 
+		    s = n < 0 ? "-" : "", 
+		    i = parseInt(n = Math.abs(+n || 0).toFixed(c)) + "", 
+		    j = (j = i.length) > 3 ? j % 3 : 0;
+		   return s + (j ? i.substr(0, j) + t : "") + i.substr(j).replace(/(\d{3})(?=\d)/g, "$1" + t) + (c ? d + Math.abs(n - i).toFixed(c).slice(2) : "");
+	};
+	formatDateFunc = function(dateTime){
+		var monthNames = [
+			"Jan", "Feb", "Mar",
+			"Apr", "May", "Jun", "Jul",
+			"Aug", "Sep", "Oct",
+			"Nov", "Dec"
+		];
+
+		var date = new Date(dateTime.substring(0, 10));
+		var day = date.getDate();
+		var monthIndex = date.getMonth();
+		var year = date.getFullYear();
+
+		return monthNames[monthIndex] + ' ' + year;
+	}
+	$(function () { 
+		var categoryUri = '/' + 'drawing-painting';
+		var allcreatorstable = $('#allCreatorsTable').dataTable({
+			ajax: "/api/creators" + categoryUri,
+			deferRender: true,
+			dom: '<l<t>ip>',
+			pagingType: "input",
+			columns: [
+				{ 
+					data: "rank",
+					render: function ( data, type, row ) {
+						data = data * 1; //force numeric
+	                	if ( type === 'display' || type === 'filter' ) {
+	                    	return '<span class="number">' + 
+	                    		data.formatMoney(0,'.',',') +
+	                    		'</span>';
+	                    }
+	                    return data;
+	                },
+				},
+				{ 
+					data: "link",
+					render: function ( data, type, row ) {
+						var thisData = data.replace('_adlt_','<span class="hidden">nsfw</span><span class="pull-right"><img src="/img/adlt.png"></span>');
+						var pieces = thisData.split("_&_");
+
+						return '<a href="/creator/' + pieces[0] + '">' +
+							'<span class="creatorName">' + pieces[1] + '</span>' +
+							' is creating ' + pieces[2] +
+							'</a>';
+	                    
+	                },
+				},
+				{ 
+					data: "patrons",
+					render: function ( data, type, row ) {
+						data = data * 1; //force numeric
+	                	if ( type === 'display' || type === 'filter' ) {
+	                    	return '<span class="number">' + 
+	                    		data.formatMoney(0,'.',',') +
+	                    		'</span>';
+	                    }
+	                    return data;
+	                },
+				},
+				{
+					data: 'earnings',
+					render: function ( data, type, row ) {
+						if (data != null){
+							var pieces = data.split("/");
+							pieces[0] = pieces[0] * 1; //force numeric
+		                	if ( type === 'display' || type === 'filter' ) {
+		                    	return '<span class="number">$' + 
+		                    		pieces[0].formatMoney(0,'.',',') +
+		                    		'</span> per ' +
+		                    		pieces[1];
+		                    }
+		                    return pieces[0];
+		                }
+		                return "";
+	                },
+            		type: "num"
+            	},
+				{
+					data: 'supportPerPatron',
+					render: function ( data, type, row ) {
+						if (data != null){
+							var pieces = data.split("/");
+							pieces[0] = pieces[0] * 1; //force numeric
+		                	if ( type === 'display' || type === 'filter' ) {
+		                    	return '<span class="number">$' + 
+		                    		pieces[0].formatMoney(2,'.',',') +
+		                    		'</span> per ' +
+		                    		pieces[1];
+		                    }
+		                    return pieces[0];
+		                }
+		                return "";
+	                },
+            		type: "num"
+            	},
+				{
+					data: 'daysRunning',
+					render: function ( data, type, row ) {
+						if ( type === 'display' || type === 'filter' ) {
+							return '<span class="number">' + data + '</span>';
+						}
+	                    return data;
+	                },
+	                type: "num"
+            	},
+				{
+					data: 'patreonPublishedAt',
+					render: function ( data, type, row ) {
+						if ( type === 'display' || type === 'filter' ) {
+							return '<span class="number">' + formatDateFunc(data) + '</span>';
+						}
+	                    return data;
+	                },
+	                type: "date"
+            	}
+			],
+			language: {
+				lengthMenu: $('#filter-btns-toolbar').remove().html(),
+				info: "Showing _START_ to _END_ of _TOTAL_ creators",
+				loadingRecords: "<h2><i class=\"fa fa-refresh fa-spin\"></i></h2>",
+				search: ""
+			}
+		});
+
+		var _filtertype = 'sfw';
+		var _activebutton_sfw = 'all';
+		var _activebutton_patrons = 'patron-count-1';
+		// function to make filter buttons work
+		$.fn.dataTable.ext.search.push( function ( settings, searchData, index, rowData, counter ) {
+		    if ( settings.nTable.id !== 'allCreatorsTable' ) {
+		        return true;
+		    }
+
+		    if ( _activebutton_sfw == 'all' ) {
+		        // continue
+		    }
+		    else if (_activebutton_sfw == 'nsfwonly') {
+		    	if (rowData.link.indexOf('_adlt_') > -1) {
+		    		// continue
+		    	}
+		    	else {
+		    		return false;
+		    	}
+		    }
+		    else if (_activebutton_sfw == 'sfwonly') {
+		    	if (rowData.link.indexOf('_adlt_') == -1) {
+		    		// continue
+		    	}
+		    	else {
+		    		return false;
+		    	}
+		    }
+		
+		    if (_activebutton_patrons == 'patron-count-1'){
+		    	// continue
+		    }
+		    else {
+		    	var min_patron_count = parseInt(_activebutton_patrons.replace("patron-count-",""));
+		    	if (rowData.patrons >= min_patron_count) {
+		    		// continue
+		    	}
+		    	else {
+		    		return false;
+		    	}
+		    }
+		    return true;
+		} );
+
+		$('#filter-box').keyup(function(){
+			allcreatorstable.fnFilter(this.value);
+		});
+
+	    $('#filter-btns-patrons').on( 'change', function (e) {
+			// set the activebutton variable
+			_activebutton_patrons = $(this).val();
+			_filtertype = 'patrons';
+	        // Redraw the table to update the filtering change
+	        $('#allCreatorsTable').DataTable().draw();
+	    });
+	});
+</script>
+
+  <script type="text/javascript">
+  jQuery(document).ready(function(){
+    // Setup the Autocomplete search box
+    jQuery('#searchAutocomplete').select2({
+      placeholder: 'Search Creators',
+      minimumInputLength: 3,
+      multiple: true,
+      width: '200px',
+      ajax: {
+        url: "/api/search/getAutocomplete",
+        dataType: 'json',
+        type: 'POST',
+        delay: 250,
+        data: function (params) {
+          return {
+            q: params.term, // search term
+            page: params.page
+          };
+        },
+        processResults: function (data, page) {
+          // parse the results into the format expected by Select2.
+          // since we are using custom formatting functions we do not need to
+          // alter the remote JSON data
+          return {
+            results: data.items
+          };
+        }
+      }
+    });
+    // save the original query text for sending to Google Analytics
+    jQuery('.select2-search__field').on("keyup", function() {
+      jQuery('#searchAutocomplete').attr('data-original-query',jQuery('.select2-search__field').val());
+    });
+    // when a user selects an autocomplete option, send info to Google Analytics, and send user to the selected page
+    jQuery('#searchAutocomplete').on("change", function(e) {
+      e.preventDefault();
+      var slug=$('#searchAutocomplete option:first').val();
+      var pageQuery='/vpv/autocomplete-search?q=' + jQuery('#searchAutocomplete').attr('data-original-query');
+      jQuery('body').addClass('loading');
+      ga('send', 'pageview', {
+        'page': pageQuery,
+        'title': 'Autocomplete Search',
+        'hitCallback': function() {
+                // send user to selected page
+                window.location.replace(slug);
+              }
+            });
+      });
+  });
+  </script>
+
+	<script>
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+	  ga('create', 'UA-737315-32', 'auto');
+	  ga('send', 'pageview');
+
+	</script>
+
+
+
+</body></html>
