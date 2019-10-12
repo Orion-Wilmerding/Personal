@@ -1,0 +1,16 @@
+Adjustments to Make this code work:
+
+When running npm install to create the node_modules files, two errors appear.
+Express.io doesn't link to coffee-script and connect properly.
+Udemy section 4: WebRTC Signaling, chp. 14 Setting Up Socket.io Q&A
+shows how to fix this
+Go to node_modules/express.io/switch.js and remove './node_modules' from
+'./node_modules/coffee-script'
+Similarly, in express.io/lib/index.coffee remove './node_modules' from 
+'./node_modules/connect'
+
+Next. The URL.createObjectURL(stream) has been depreciated
+Replace with this structure:
+
+smallVideoArea.srcObject = stream; // Simplify to srcObject = stream and everything works
+//smallVideoArea.src = URL.createObjectURL(stream); // This code is depreciated
