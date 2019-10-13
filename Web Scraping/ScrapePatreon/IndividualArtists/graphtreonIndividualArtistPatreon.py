@@ -23,7 +23,7 @@ with open(allArtists_csv, 'r') as allArtists:   # opens csv as named 'r' read fi
 # Setup csv to write data too:
         
 allArtistsAccounts = []
-socialMedia02_csv = open('socialMedia02.csv', 'w')
+socialMedia02_csv = open('socialMedia03.csv', 'w')
 writer = csv.writer(socialMedia02_csv)
 writer.writerow(['Rank', 'Instagram', 'Facebook'])
 
