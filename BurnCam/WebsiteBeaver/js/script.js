@@ -1,5 +1,5 @@
 //Create an account on Firebase, and use the credentials they give you in place of the following
-var config = {
+let config = {
   apiKey: "AIzaSyBQlU7N1zH3_Y0Ro7ZaQ6ypq_93CbMui7o",
   authDomain: "webrtctutorial.firebaseapp.com",
   databaseURL: "https://webrtctutorial.firebaseio.com",
@@ -11,28 +11,42 @@ var config = {
 };
 firebase.initializeApp(config);
 
-var database = firebase.database().ref();
-var yourVideo = document.getElementById("yourVideo");
-var friendsVideo = document.getElementById("friendsVideo");
-var yourId = Math.floor(Math.random()*1000000000);
-//Create an account on Viagenie (http://numb.viagenie.ca/), and replace {'urls': 'turn:numb.viagenie.ca','credential': 'websitebeaver','username': 'websitebeaver@email.com'} with the information from your account
-var servers = {'iceServers': [
+let database      = firebase.database().ref();
+let yourVideo     = document.getElementById("yourVideo");
+let friendsVideo  = document.getElementById("friendsVideo");
+let yourId        = Math.floor(Math.random()*1000000000);
+
+/* Create an account on Viagenie (http://numb.viagenie.ca/), 
+and replace {'urls': 'turn:numb.viagenie.ca',
+             'credential': 'websitebeaver',
+             'username': 'websitebeaver@email.com'
+            } with the information from your account */
+
+let servers = {'iceServers': [
   {'urls': 'stun:stun.services.mozilla.com'}, 
   {'urls': 'stun:stun.l.google.com:19302'}//, 
   //{'urls': 'turn:numb.viagenie.ca','credential': 'iI&3n8sE$hMxRwR$i!S^vGT4v44M9','username': 'thaddeusorionwilmerding@gmail.com'}
 ]};
-var pc = new RTCPeerConnection(servers);
-pc.onicecandidate = (event => event.candidate?sendMessage(yourId, JSON.stringify({'ice': event.candidate})):console.log("Sent All Ice") );
-pc.onaddstream = (event => friendsVideo.srcObject = event.stream);
+
+let pc = new RTCPeerConnection(servers);
+pc.onicecandidate = (event => 
+                      event.candidate?sendMessage(
+                        yourId, 
+                        JSON.stringify({
+                          'ice': event.candidate
+                        })):console.log("Sent All Ice") );
+pc.ontrack = (event => 
+                    friendsVideo.srcObject = event.stream
+                 );
 
 function sendMessage(senderId, data) {
-    var msg = database.push({ sender: senderId, message: data });
+    let msg = database.push({ sender: senderId, message: data });
     msg.remove();
 }
 
 function readMessage(data) {
-    var msg = JSON.parse(data.val().message);
-    var sender = data.val().sender;
+    let msg = JSON.parse(data.val().message);
+    let sender = data.val().sender;
     if (sender != yourId) {
         if (msg.ice != undefined)
             pc.addIceCandidate(new RTCIceCandidate(msg.ice));
