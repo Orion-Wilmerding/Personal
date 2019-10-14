@@ -29,15 +29,8 @@ let servers = {'iceServers': [
 ]};
 
 let pc = new RTCPeerConnection(servers);
-pc.onicecandidate = (event => 
-                      event.candidate?sendMessage(
-                        yourId, 
-                        JSON.stringify({
-                          'ice': event.candidate
-                        })):console.log("Sent All Ice") );
-pc.ontrack = (event => 
-                    friendsVideo.srcObject = event.stream
-                 );
+pc.onicecandidate = (event => event.candidate?sendMessage(yourId, JSON.stringify({'ice': event.candidate})):console.log("Sent All Ice") );
+pc.ontrack = (event => friendsVideo.srcObject = event.stream);
 
 function sendMessage(senderId, data) {
     let msg = database.push({ sender: senderId, message: data });
